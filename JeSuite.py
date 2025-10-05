@@ -1,7 +1,8 @@
 import sys
 
 from PyQt5.QtCore import QSize, Qt
-from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QWidget, QHBoxLayout, QComboBox, QVBoxLayout
+from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QWidget, QHBoxLayout, QComboBox, QVBoxLayout, QLabel
+from PyQt5.QtGui import QPixmap
 
 
 # Subclass QMainWindow to customize your application's main window
@@ -15,9 +16,18 @@ class MainWindow(QWidget):
         main_layout = QVBoxLayout()
 
         filters = self.create_categories()
-        main_layout.addLayout(filters)
 
+        #background
+        self.label = QLabel(self)
+        self.label.setAlignment(Qt.AlignCenter)
+        pixmap = QPixmap("Assets/landingpage_image.jpeg")
+        self.label.setPixmap(pixmap.scaled(1000, 500)) 
+
+    
+        main_layout.addWidget(self.label)
+        main_layout.addLayout(filters)
         self.setLayout(main_layout)
+
     
     def create_categories(self):
         filter_layout = QHBoxLayout()
@@ -41,6 +51,7 @@ class MainWindow(QWidget):
         filter_layout.addWidget(guest_combo)
         filter_layout.addWidget(room_combo)
         filter_layout.addWidget(search_button)
+        #filter_layout.addWidget(self.label)
         
         return filter_layout
         
