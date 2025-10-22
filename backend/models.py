@@ -1,4 +1,3 @@
-
 from flask_sqlalchemy import SQLAlchemy
 db = SQLAlchemy()
  
@@ -12,7 +11,7 @@ class Room(db.Model):
     def to_dict(self):
         return{
             'id': self.id,
-            'room_number': self_room_number, 
-            'type': self.type,
+            'room_number': self.room_number, 
+            'type': self.room_type,
             'price': self.price_per_night
         }
