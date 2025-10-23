@@ -3,19 +3,18 @@ from models import db, Room # asking the models to have access to db and Room cl
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///rooms.db' #database location
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False # disable modification tracking for performance
 
-db.init_app(app)
+db.init_app(app) #intialize the database w/ flask app
 
-@app.route("/")
+@app.route("/") #
 def home():
-    return "Welcome to the Room Management System"
+    return "Welcome to the Room Management System" # when directed to http-> directly lead to this message
 
-@app.route("/rooms", methods = ['GET'])
+@app.route("/rooms", methods = ['GET']) # create a route to get all rooms
 def get_rooms(): #create a route to get all rooms
     rooms = Room.query.all() #fetch all room records
-    return jsonify([room.to.dict() for room in rooms]) # convert each room to dictionary and return as JSON
-
+    return jsonify([room.to_dict() for room in rooms]) # convert each room to dictionary and return as JSON
 
 @app.route("/rooms", methods=['POST']) 
 def create_room(): 
