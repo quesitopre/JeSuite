@@ -1,5 +1,5 @@
-from flask_sqlalchemy import SQLAlchemy
-db = SQLAlchemy()
+from flask_sqlalchemy import SQLAlchemy #
+db = SQLAlchemy() # 
  
 class Room(db.Model):
     __tablename__ = 'rooms'
@@ -8,7 +8,7 @@ class Room(db.Model):
     room_type = db.Column(db.String(10), nullable=False) 
     price_per_night = db.Column(db.Float, nullable=False)   
 
-    def to_dict(self):
+    def to_dict(self):  
         return{
             'id': self.id,
             'room_number': self.room_number, 
