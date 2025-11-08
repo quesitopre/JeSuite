@@ -110,7 +110,7 @@ class MainWindow(QWidget):
         location_combo.addItems(["Los Angeles, California", "Santa Monica, California", "Beverly Hill, California"])
         
         #CHANGED
-        self.location_combo = location_combo.currentData()
+        self.location_combo = location_combo.currentText()
 
         #guest
         #guest_label = QLabel("Guest:")
@@ -139,7 +139,7 @@ class MainWindow(QWidget):
         people_combo = QComboBox()
         people_combo.addItems(["1 guest, 1 room", "2 guests, 1 room", "3 guests, 1 room", "4 guests, 1 room", "5 guests, 2 rooms", "6 guests, 2 rooms"])
         #CHANGED
-        self.people_combo = people_combo.currentData()
+        self.people_combo = people_combo.currentText()
 
         #datebutton
         self.date_button = QPushButton("Select Dates")
