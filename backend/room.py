@@ -7,7 +7,6 @@ class Room:
     
     def __init__(self, bed_type, num_beds, price_per_night, room_num, is_available):
         self.room_number = 0
-        #the room type shows if customer wants a single with either a queen or king bed, a double with two beds, or a suite
         self.room_type = ["Suite", "Double", "Single_Queen", "Single_King"]
         self.price_per_night = 0.0
         self.hotel_amenities = ["Pool", "Gym", "Free Breakfast", "Wifi", "Free Parking", "Office Area", "Laundry"]
@@ -34,3 +33,5 @@ class Room:
 
        
     
+
+
