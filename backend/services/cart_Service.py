@@ -6,7 +6,6 @@ Subtotal =
 taxRate =
 
 
-
 #cart function to remove item from cart
 def removeCartItem():
     pass

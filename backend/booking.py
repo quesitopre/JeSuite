@@ -19,3 +19,4 @@ def __init__(self):
     self.room_two = room_two_price
     self.total_amount = calculate_total
     
+class BookingService:
