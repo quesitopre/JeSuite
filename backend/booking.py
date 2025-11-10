@@ -13,7 +13,6 @@ def __init__(self):
     self.credit_card_cvc = "Button credit card cvc"
     self.billing_zip_code = "Button billing zip code"
     self.customer_email = "Button customer email"
-    self.room_one = room_one_price
-    self.room_two = room_two_price
-    self.total_amount = calculate_total
     
+    
+
