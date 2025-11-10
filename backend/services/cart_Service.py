@@ -1,10 +1,9 @@
 # Cart service 
- roomID = 
-nights = 
-    guests =
-Subtotal =
-taxRate =
+from typing import List,Dict, Optional
 
+class CartService:
+    def __init__(self):
+        self.cart_items: List[Dict]= [] #Empty list to hold items in cart
 
 #cart function to remove item from cart
 def removeCartItem():
