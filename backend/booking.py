@@ -13,6 +13,7 @@ def __init__(self):
     self.credit_card_cvc = "Button credit card cvc"
     self.billing_zip_code = "Button billing zip code"
     self.customer_email = "Button customer email"
-    
-    
+    self.check_in_date = "txt from check in button"
+    self.check_out_date = "txt from check out button"
+
 
