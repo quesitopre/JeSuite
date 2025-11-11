@@ -12,10 +12,10 @@ class roomSearch:
         self.single_king.set_room("King", 1, 170.0, 167, True)
 
         self.double = Room()
-        self.double.set_room("Queen", 2, 210, 38, True)
+        self.double.set_room("Queen", 2, 210.0, 38, True)
 
         self.suite = Room()
-        self.suite.set_room("King", 2, 280, 412, True)
+        self.suite.set_room("King", 2, 280.0, 412, True)
 #add in the buttons later for popup
     def selected_people(self):
         if self.people_combo.currentIndex() == 0:

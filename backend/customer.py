@@ -6,7 +6,7 @@ from backend.room import Room
 import os
 import csv
 
-class Booking:
+class Customer:
     def __init__(self):
         #make protected
         #use in email class later
@@ -18,3 +18,4 @@ class Booking:
         self.customer_email = "Button customer email"
         self.check_in_date = "txt from check in button"
         self.check_out_date = "txt from check out button"
+
