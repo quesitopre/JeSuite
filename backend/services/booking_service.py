@@ -1,4 +1,4 @@
-from booking.py import customer_first_name, customer_last_name, credit_card_num, credit_card_cvc, billing_zip_code, customer_email, room_one, room_two, total_amount
+from booking import customer_first_name, customer_last_name, credit_card_num, credit_card_cvc, billing_zip_code, customer_email, room_one, room_two, total_amount
 import os
 import csv
 from datetime import datetime
@@ -52,12 +52,9 @@ class BookingService:
                 booking.credit_card_num,
                 booking.credit_card_cvc,
                 booking.billing_zip_code,
-                booking.room_id, if hasattr(booking, 'room_id') else 0,
-                booking.room_price, if hasattr(booking, 'room_price') else 0,
-                booking.nights, if hasattr(booking, 'nights') else 0,
-                booking.total_amount, if hasattr(booking, 'total_amount') else 0,
-                getattr(booking, 'status', 'Confirmed')
-                datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+                getattr(booking, 'room_id',''),
+                getattr(booking,' nights',''),
+                getattr(booking,total_amount,'')
             ])
         
 
