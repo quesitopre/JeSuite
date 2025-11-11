@@ -1,19 +1,30 @@
-import sys
+from PyQt5.QtWidgets import QWidget, QGridLayout, QHBoxLayout
+from PyQt5.QtCore import QDate
+from PyQt5.QtGui import QPixmap
+from PyQt5.QtCore import Qt
 
-from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QPushButton
+from roomCard import RoomCard
 
-class RoomSelectionPage(QWidget):
+class RoomSelectionPage(QWidget): 
     def __init__(self, stacked_widget):
         super().__init__()
         self.stacked_widget = stacked_widget
 
-        main_layout = QVBoxLayout()
+        grid = QHBoxLayout()
+        
 
-        next_btn = QPushButton("Continue to Reservation Form")
-        next_btn.clicked.connect(self.go_to_reservation_form)
-        main_layout.addWidget(next_btn)
+        junior = RoomCard("Assets/junior.jpeg", "King bed", "Wifi, Free Breakfast", "$170", self.stacked_widget)
+        standard = RoomCard("Assets/junior.jpeg", "Queen bed", "Wifi", "$120", self.stacked_widget)
+        couple = RoomCard("Assets/junior.jpeg", "Double bed", "Wifi", "$210", self.stacked_widget)
+        family = RoomCard("Assets/junior.jpeg", "Suite bed", "Wifi", "$280", self.stacked_widget)
+        
+        grid.addWidget(junior)
+        grid.addWidget(standard)
+        grid.addWidget(couple)
+        grid.addWidget(family)
 
-        self.setLayout(main_layout)
+        self.setLayout(grid)
 
-    def go_to_reservation_form(self):
-        self.stacked_widget.setCurrentIndex(2)
+
+    #def go_to_reservation_form(self):
+     #   self.stacked_widget.setCurrentIndex(2)

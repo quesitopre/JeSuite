@@ -94,17 +94,20 @@ class HomePage(QWidget):
         #location
         location_label = QLabel("Location:")
         location_combo = QComboBox()
-        location_combo.addItems(["Los Angeles, California", "Santa Monica, California", "Beverly Hill, California"])
+        location_combo.addItems(["Los Angeles, California", "Santa Monica, California", "Beverly Hill, California", "Malibu, California"])
+        self.location_combo = location_combo.currentText()
 
         #people
         people_label = QLabel("People:")
         people_combo = QComboBox()
         people_combo.addItems(["1 guest, 1 room", "2 guests, 1 room", "3 guests, 1 room", "4 guests, 1 room", "5 guests, 2 rooms", "6 guests, 2 rooms"])
+        self.people_combo = people_combo.currentText()
 
         #calendar
         calendar_label = QLabel("Calendar:")
         calendar_combo = QComboBox()
         calendar_combo.addItems(["Check-in and Check-out Dates"])
+        self.calendar_combo = calendar_combo.currentText()
         
         #datebutton
         self.date_button = QPushButton("Select Dates")
