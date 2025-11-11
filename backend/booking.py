@@ -3,7 +3,10 @@ from dataclasses import dataclass, field
 from typing import List, Optional
 from homepage import CalendarPopUp, MainWindow
 from backend.room import Room
+import os
+import csv
 
+class Booking:
 def __init__(self):
     #make protected
     #use in email class later
@@ -15,7 +18,4 @@ def __init__(self):
     self.customer_email = "Button customer email"
     self.check_in_date = "txt from check in button"
     self.check_out_date = "txt from check out button"
-
-    
-
 
