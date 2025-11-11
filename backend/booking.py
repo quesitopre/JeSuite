@@ -18,4 +18,4 @@ def __init__(self):
     self.customer_email = "Button customer email"
     self.room_one = room_one_price
     self.room_two = room_two_price
-    self.total_amount = calculate_total
+   
