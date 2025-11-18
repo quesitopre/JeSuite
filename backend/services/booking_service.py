@@ -1,11 +1,50 @@
-from backend.booking import Booking
+from backend.customer import Booking
 import csv
+import os
 from datetime import datetime
+from homepage import CalendarPopUp, MainWindow
+from backend.customer import Customer
+from roomSearch import roomSearch
+
 #booking service to create, read and write CSV file for bookings
 class BookingService:
     def __init__(self, booking_file = 'bookings.csv'):
         self.booking_file = booking_file 
         self._initialize_file()
+        self.total_bookings = []
+        self.booking_id = 123
+        self.nights = self.start_date - self.end_date
+        self.payment_approved = True
+
+    def info_getter(self):
+        return{self.customer_first_name,
+            self.customer_last_name,
+            self.credit_card_num, 
+            self.credit_card_cvc, 
+            self.billing_zip_code, 
+            self.customer_email, 
+            self.check_in_date,
+            self.check_out_date,
+            self.location_combo,
+            self.cart_items
+            }
+            
+    def update_availability(self):
+        for room in self.cart_items:
+            if self.single_queen in self.cart_items:
+                self.single_queen.set_room("Queen", 1, 120.0, 209, False)
+            elif self.single_king in self.cart_items:
+                self.single_king.set_room("King", 1, 170.0, 167, False)
+            elif self.double in self.cart_items:
+                self.double.set_room("Queen", 2, 210.0, 38, False)
+            else:
+                self.suite.set_room("King", 2, 280.0, 412, False)
+
+    def calculate_total(self):
+        return self.rooms_total + self.calculate_tax()
+    
+    def calculate_tax(self):
+        return self.rooms_total * .0925
     
     def _initialize_file(self):
         #Create a CSV file and folder.
@@ -38,6 +77,9 @@ class BookingService:
        number = int(last_id.replace('BK','')) + 1
        return f'BK{number:03d}'
     
+#clear "cart" after booking is complete
+
+
     def saveBooking(self, booking)-> str:
         #save a booking to the CSV file
         booking_id = self.generateBookingID()

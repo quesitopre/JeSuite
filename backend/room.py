@@ -5,15 +5,14 @@ from homepage import CalendarPopUp, MainWindow
 
 class Room:
     
-    def __init__(self, bed_type, num_beds, price_per_night, room_num, is_available):
-        self.room_number = 0
+    def __init__(self):
         self.room_type = ["Suite", "Double", "Single_Queen", "Single_King"]
-        self.price_per_night = 0.0
         self.hotel_amenities = ["Pool", "Gym", "Free Breakfast", "Wifi", "Free Parking", "Office Area", "Laundry"]
         self.room_amenitites = ["Kitchen", "TV", "Room Service"]
-        self.is_available = True
         self.check_in_date = None
         self.check_out_date = None
+        self.check_in_time = "1:00 pm"
+        self.check_out_time = "10:00 am"
 
 
     def set_room(self, bed_type, num_beds, price_per_night, room_num, is_available):
