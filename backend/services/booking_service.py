@@ -123,5 +123,3 @@ class BookingService:
                 return booking
             
         return None 
-    
-    
