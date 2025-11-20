@@ -55,7 +55,6 @@ class HomePage(QWidget):
 
         self.calendar_popUp = None
 
-
     def create_header(self):
         header_layout = QHBoxLayout()
 
