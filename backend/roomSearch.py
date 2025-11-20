@@ -23,16 +23,16 @@ class roomSearch:
 #add in the buttons later for popup
     def selected_people(self):
         if self.people_combo.currentIndex() == 0:
-            return {self.junior, self.standard, self.family}
+            return {self.queen, self.king}
         elif self.people_combo.currentIndex() == 1:
-            return {self.junior, self.standard, self.family, self.couple}
+            return {self.queen, self.king, self.double}
         elif self.people_combo.currentIndex() == 2:
-            return {self.junior, self.standard, self.family, self.couple}
+            return {self.queen, self.king, self.double, self.suite}
         elif self.people_combo.currentIndex() == 3:
-            return {self.junior, self.standard, self.family, self.couple}
+            return {self.queen, self.king, self.double, self.suite}
         elif self.people_combo.currentIndex() == 4:
             print("Must select 2 rooms")
-            return {self.junior, self.standard, self.family, self.couple}
+            return {self.queen, self.king, self.double, self.suite}
         else: 
             print("Must select 2 rooms")
-            return {self.junior, self.standard, self.family, self.couple}
+            return {self.queen, self.king, self.double, self.suite}
