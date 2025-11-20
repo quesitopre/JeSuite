@@ -14,7 +14,7 @@ class CalendarPopUp(QCalendarWidget):
         super().__init__(parent)
         self.callback = callback
         self.setWindowFlags(Qt.Popup)
-        self.clicked.connect(self.on_date_selected)#typo fixed
+        self.clicked.connect(self.on_date_selected)
         self.start_date = None #The first click
 
     def on_date_selected(self, date):
@@ -31,23 +31,15 @@ class CalendarPopUp(QCalendarWidget):
                 self.close( )
 
 
-        
-
-
-
-# Subclass QMainWindow to customize your application's main window
-class MainWindow(QWidget): 
-    def __init__(self):
+class HomePage(QWidget):
+    def __init__(self, stacked_widget):
         super().__init__()
-
-        self.setWindowTitle("My App")
-        self.setFixedSize(1000,500)
-        self.setStyleSheet("background-color: lightblue;")
+        self.stacked_widget = stacked_widget
 
         main_layout = QVBoxLayout()
         header = self.create_header()
         filters = self.create_categories()
-
+       
         main_layout.addLayout(header)
 
         #background
@@ -85,8 +77,8 @@ class MainWindow(QWidget):
         header_layout.addWidget(sign_up_button)
 
         return header_layout
-
     
+
     def create_categories(self):
         
         #hold all layouts and lays them out horizontally
@@ -94,94 +86,50 @@ class MainWindow(QWidget):
 
         #individual layouts for each filter
         location_layout = QVBoxLayout()
-        #guest_layout = QVBoxLayout()
-        #room_layout = QVBoxLayout()
-        #guestandroom_layout = QVBoxLayout()
         people_layout = QVBoxLayout()
-        #checkin_layout = QVBoxLayout()
-        #checkout_layout = QVBoxLayout()
         calendar_layout = QVBoxLayout()
 
-        
 
         #location
         location_label = QLabel("Location:")
         location_combo = QComboBox()
-        location_combo.addItems(["Los Angeles, California", "Santa Monica, California", "Beverly Hill, California"])
-        
-        #CHANGED
+        location_combo.addItems(["Los Angeles, California", "Santa Monica, California", "Beverly Hill, California", "Malibu, California"])
         self.location_combo = location_combo.currentText()
-
-        #guest
-        #guest_label = QLabel("Guest:")
-        #guest_combo = QComboBox()
-        #guest_combo.addItems(["1", "2", "3", "4", "5"])
-
-        #room
-        #room_label = QLabel("Room:")
-        #room_combo = QComboBox()
-        #room_combo.addItems(["1", "2", "3", "4", "5"])
-
-        #guestandroom
-        #guestandroom_label = QLabel("Guest and Room:")
-        #guestandroom_combo = QComboBox()
-        #guestandroom_combo.addItems(["1 guest, 1 room", "2 guests, 1 room", "3 guests, 1 room", "4 guests, 1 room", "5 guests, 2 rooms"])
-
-
-        #calendar
-        calendar_label = QLabel("Calendar:")
-        calendar_combo = QComboBox()
-        calendar_combo.addItems(["Check-in and Check-out Dates"])
-        
 
         #people
         people_label = QLabel("People:")
         people_combo = QComboBox()
         people_combo.addItems(["1 guest, 1 room", "2 guests, 1 room", "3 guests, 1 room", "4 guests, 1 room", "5 guests, 2 rooms", "6 guests, 2 rooms"])
-        #CHANGED
         self.people_combo = people_combo.currentText()
 
+        #calendar
+        calendar_label = QLabel("Calendar:")
+        calendar_combo = QComboBox()
+        calendar_combo.addItems(["Check-in and Check-out Dates"])
+        self.calendar_combo = calendar_combo.currentText()
+        
         #datebutton
         self.date_button = QPushButton("Select Dates")
         self.date_button.clicked.connect(self.show_calendar_popup)
+        
         #searchbutton
         search_button = QPushButton("Search")
+        search_button.clicked.connect(self.go_to_room_selection)
 
         #adding location layout to filter layout
         location_layout.addWidget(location_label)
         location_layout.addWidget(location_combo)
         filter_layout.addLayout(location_layout)
 
-        #adding guest layout to filter layout
-        #guest_layout.addWidget(guest_label)
-        #guest_layout.addWidget(guest_combo)
-        #filter_layout.addLayout(guest_layout)
-
-        #adding room layout to filter layout
-        #room_layout.addWidget(room_label)
-        #room_layout.addWidget(room_combo)
-        #filter_layout.addLayout(room_layout)
-
-        #adding guestandroom layout to filter layout
-        #guestandroom_layout.addWidget(guestandroom_label)
-        #guestandroom_layout.addWidget(guestandroom_combo)
-        #filter_layout.addLayout(guestandroom_layout)
-
         #adding people layout to filter layout
         people_layout.addWidget(people_label)
         people_layout.addWidget(people_combo)
         filter_layout.addLayout(people_layout)
 
-        #adding calendar check_in layout to filter layout
+        #adding calendar check in, check out layout to filter layout
         calendar_layout.addWidget(calendar_label)
-        calendar_layout.addWidget(self.date_button) #bug fixed
+        calendar_layout.addWidget(self.date_button)
         filter_layout.addLayout(calendar_layout)
-
-        #adding calendar check_out layout to filter layout
-        #calendar_layout.addWidget(checkout_label)
-        #calendar_layout.addWidget(self.checkout_calendar)
-        #filter_layout.addLayout(calendar_layout)
-
 
 
         filter_layout.addWidget(search_button)
@@ -202,11 +150,6 @@ class MainWindow(QWidget):
         self.date_button.setText(
             f"{start_date.toString('MM/dd/yyyy')} - {end_date.toString('MM/dd/yyyy')}"
             )
-
-app = QApplication(sys.argv)
-
-window = MainWindow()
-window.show()
-
-app.exec()
-
+        
+    def go_to_room_selection(self):
+        self.stacked_widget.setCurrentIndex(1)
