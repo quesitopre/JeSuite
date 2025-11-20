@@ -16,7 +16,7 @@ class RoomSelectionPage(QWidget):
         king = RoomCard("Assets/King_room.jpg", "1 King bed", "Max Occupancy: 3", "$170", self.stacked_widget)
         queen = RoomCard("Assets/Queen_room.avif", "1 Queen bed", "Max Occupancy: 2", "$120", self.stacked_widget)
         double = RoomCard("Assets/Double_room.avif", "Double bed(2 Queen)", "Max Occupancy: 4", "$210", self.stacked_widget)
-        suite = RoomCard("Assets/Suite_room.jpg", "Suite bed(2 King)", "Max Occupancy: 6", "$280", self.stacked_widget)
+        suite = RoomCard("Assets/Suite_room.jpg", "Suite bed(2 King)", "Max Occupancy: 4", "$280", self.stacked_widget)
 
         #self.king_txt = self.king.currentText()
         #self.queen_txt = self.queen.currentText()
