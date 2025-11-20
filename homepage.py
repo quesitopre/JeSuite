@@ -15,7 +15,7 @@ class CalendarPopUp(QCalendarWidget):
         self.callback = callback
         self.setWindowFlags(Qt.Popup)
         self.clicked.connect(self.on_date_selected)
-        self.start_date = None #The first click
+        self.start_date = None
 
     def on_date_selected(self, date):
         #Select the starting and ending dates, then close ze popup
@@ -54,6 +54,7 @@ class HomePage(QWidget):
         self.setLayout(main_layout)
 
         self.calendar_popUp = None
+
 
     def create_header(self):
         header_layout = QHBoxLayout()
