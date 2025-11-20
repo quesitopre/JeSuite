@@ -3,12 +3,12 @@ from PyQt5.QtGui import QPixmap
 from PyQt5.QtCore import Qt
 
 class RoomCard(QWidget):
-    def __init__(self, image_path, suite_name, ammenities, price, stacked_widget = None):
+    def __init__(self, image_path, suite_name, capacity, price, stacked_widget = None):
         super().__init__()
 
         self.image = image_path
         self.name = suite_name
-        self.ammenities = ammenities
+        self.capacity = capacity
         self.price = price
         self.stacked_widget = stacked_widget
 
@@ -53,7 +53,7 @@ class RoomCard(QWidget):
         self.label = QLabel(self)
         self.label.setAlignment(Qt.AlignCenter)
         pixmap = QPixmap(self.image)
-        self.label.setPixmap(pixmap.scaled(200, 280)) 
+        self.label.setPixmap(pixmap.scaled(250, 300)) 
         info_layout.addWidget(self.label)
 
         # name 
@@ -61,10 +61,10 @@ class RoomCard(QWidget):
         name_label.setAlignment(Qt.AlignCenter)
         info_layout.addWidget(name_label)
 
-        # ammenities 
-        amen_label = QLabel(self.ammenities)
-        amen_label.setAlignment(Qt.AlignCenter)
-        info_layout.addWidget(amen_label)
+        # capacity 
+        cap_label = QLabel(self.capacity)
+        cap_label.setAlignment(Qt.AlignCenter)
+        info_layout.addWidget(cap_label)
 
         # price
         price_label = QLabel(self.price)

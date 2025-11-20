@@ -3,6 +3,7 @@ from PyQt5.QtWidgets import QApplication, QMainWindow, QStackedWidget
 from homepage import HomePage
 from roomSelection import RoomSelectionPage
 #from roomCard import RoomCard
+from shoppingCartPage import ShoppingCartPage
 from reservationPage import ReservationPage
 
 class MainWindow(QMainWindow):
@@ -23,11 +24,14 @@ class MainWindow(QMainWindow):
 
         home = HomePage(self.stack)
         room_selection = RoomSelectionPage(self.stack)
+        shopping_cart = ShoppingCartPage(self.stack)
         reservation = ReservationPage(self.stack)
+    
 
 
         self.stack.addWidget(home)
         self.stack.addWidget(room_selection)
+        self.stack.addWidget(shopping_cart)
         self.stack.addWidget(reservation)
 
 

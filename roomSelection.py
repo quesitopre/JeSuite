@@ -13,15 +13,21 @@ class RoomSelectionPage(QWidget):
         grid = QHBoxLayout()
         
 
-        junior = RoomCard("Assets/junior.jpeg", "King bed", "Wifi, Free Breakfast", "$170", self.stacked_widget)
-        standard = RoomCard("Assets/junior.jpeg", "Queen bed", "Wifi", "$120", self.stacked_widget)
-        couple = RoomCard("Assets/junior.jpeg", "Double bed", "Wifi", "$210", self.stacked_widget)
-        family = RoomCard("Assets/junior.jpeg", "Suite bed", "Wifi", "$280", self.stacked_widget)
+        king = RoomCard("Assets/King_room.jpg", "1 King bed", "Max Occupancy: 3", "$170", self.stacked_widget)
+        queen = RoomCard("Assets/Queen_room.avif", "1 Queen bed", "Max Occupancy: 2", "$120", self.stacked_widget)
+        double = RoomCard("Assets/Double_room.avif", "Double bed(2 Queen)", "Max Occupancy: 4", "$210", self.stacked_widget)
+        suite = RoomCard("Assets/Suite_room.jpg", "Suite bed(2 King)", "Max Occupancy: 6", "$280", self.stacked_widget)
+
+        #self.king_txt = self.king.currentText()
+        #self.queen_txt = self.queen.currentText()
+        #self.double_txt = self.double.currentText()
+        #self.suite_txt = self.suite.currentText()
+
         
-        grid.addWidget(junior)
-        grid.addWidget(standard)
-        grid.addWidget(couple)
-        grid.addWidget(family)
+        grid.addWidget(king)
+        grid.addWidget(queen)
+        grid.addWidget(double)
+        grid.addWidget(suite)
 
         self.setLayout(grid)
 
