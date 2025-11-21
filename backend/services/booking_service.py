@@ -2,6 +2,7 @@ from backend.booking import Booking
 import csv
 from datetime import datetime
 #booking service to create, read and write CSV file for bookings
+''' BookingService class to handle booking operations to save and retrieve customer booking info into a csv file'''
 class BookingService:
     def __init__(self, booking_file = 'bookings.csv'):
         self.booking_file = booking_file 
