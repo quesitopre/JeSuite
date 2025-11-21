@@ -1,7 +1,8 @@
 from dataclasses import dataclass, field
 from typing import List, Optional
-from homepage import CalendarPopUp, MainWindow
+from homepage import CalendarPopUp, HomePage
 from backend.room import Room
+import pydoc
 
 class roomSearch:
 
@@ -58,4 +59,8 @@ class roomSearch:
             return {self.single_queen, self.single_king, self.suite, self.double}
         else: 
             print("Must select 2 rooms")
-            return {self.single_queen, self.single_king, self.suite, self.double}
+            return {self.single_queen, self.single_king, self.suite, self.double}\
+    
+    
+
+
