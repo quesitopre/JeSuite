@@ -8,7 +8,13 @@ class ShoppingCartPage(QWidget):
         self.stacked_widget = stacked_widget
         self.initUI()
 
+    '''
+    Summary: Initializes the UI for the shoppingCart Page
 
+    Params: None
+
+    Returns: None
+    '''
     def initUI(self):
         layout = QVBoxLayout()
         
@@ -27,5 +33,12 @@ class ShoppingCartPage(QWidget):
 
         self.setLayout(layout)
 
+    '''
+    Summary: Function that goes to reservation page
+
+    Params: None
+
+    Returns: None
+    '''
     def go_to_reservation(self):
         self.stacked_widget.setCurrentIndex(3)
