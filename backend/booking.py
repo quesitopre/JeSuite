@@ -8,6 +8,17 @@ import csv
 
 class Booking:
 
+    '''
+    a) Class Booking
+    b) 11/17
+    c) Angela Fernandez
+    d) The booking class is used to evaluate the items in the cart classes and 
+    returns it
+    It collects the variable from customer and returns them
+    It also calculates the total that the customer owes for the room/s
+    e) They are stated in the code below, on top of each method.
+
+    '''
     
     '''
     The __init__ holds the variables that we get from the rooms added to cart
