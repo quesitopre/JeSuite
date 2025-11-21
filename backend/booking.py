@@ -18,6 +18,7 @@ class Booking:
     It collects the variable from customer and returns them
     It also calculates the total that the customer owes for the room/s
     e) They are stated in the code below, on top of each method.
+    
 
     '''
     
