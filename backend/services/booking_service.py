@@ -57,12 +57,12 @@ class BookingService:
             str:  A unique booking ID in the format BK000( 000 a 3 digit number).
         """
        #Must generate a unique booking ID
-       bookings = self.loadBookings()
-       if not bookings:
-           return "BK001"
-       last_id = bookings[-1].get('booking_id', 'BK000')
-       number = int(last_id.replace('BK','')) + 1
-       return f'BK{number:03d}'
+        bookings = self.loadBookings()
+        if not bookings:
+             return "BK001"
+        last_id = bookings[-1].get('booking_id', 'BK000')
+        number = int(last_id.replace('BK','')) + 1
+        return f'BK{number:03d}'
     
     def saveBooking(self, booking:Booking)-> str:
         """Save a new booking  to the CSV file. 
