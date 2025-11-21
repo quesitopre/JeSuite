@@ -6,6 +6,16 @@ from backend.room import Room
 class roomSearch:
 
     '''
+    a) Room Search
+    b) 11/08
+    c) Angela Fernandez
+    d) The room search class uses the objects and determines which rooms show
+    depending on how many people/rooms are selected
+    e) They are stated in the code below, on top of each method.
+
+    '''
+
+    '''
     This __init__ has the objects that we created from the room class
     '''
     def __init__(self):
@@ -32,7 +42,7 @@ class roomSearch:
 
     Users who choose 1-4 guests must select one room
     Users who choose 5-6 guests must select two rooms
-    
+
     '''
     def selected_people(self):
         if self.people_combo.currentIndex() == 0:
