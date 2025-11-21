@@ -13,6 +13,7 @@ class roomSearch:
     d) The room search class uses the objects and determines which rooms show
     depending on how many people/rooms are selected
     e) They are stated in the code below, on top of each method.
+    
 
     '''
 
