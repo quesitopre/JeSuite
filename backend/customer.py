@@ -1,7 +1,7 @@
 #this is the booking/checkout class
 from dataclasses import dataclass, field
 from typing import List, Optional
-from homepage import CalendarPopUp, MainWindow
+from homepage import CalendarPopUp, HomePage
 from backend.room import Room
 import os
 import csv
