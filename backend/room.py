@@ -4,6 +4,16 @@ from typing import List, Optional
 from homepage import CalendarPopUp, MainWindow
 
 class Room:
+
+    '''
+    a) Room class
+    b) 11/08
+    c) Angela Fernandez
+    d) The room class holds the var default names and creates the cinstructor for 
+    the room objects for guest selection; queen, king, suite, and double
+    e) They are stated in the code below, on top of each method.
+
+    '''
     
     '''
     The __init__ gives the default room variables and hard codes variables
