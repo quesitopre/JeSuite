@@ -6,6 +6,7 @@ from backend.room import Room
 import os
 import csv
 
+
 class Customer:
     def __init__(self):
         #make protected
