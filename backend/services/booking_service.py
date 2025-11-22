@@ -1,6 +1,7 @@
 """ Booking Service Module 
 Module manages functionality for creating, fetching, and inputting booking data to a csv file.
-made by Citlalli Martinez 
+
+Made by Citlalli Martinez 11/08/2025.
 """
 from backend.booking import Booking
 import csv

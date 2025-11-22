@@ -1,9 +1,9 @@
 # Cart service
 '''cart_Service Module manages the shopping cart functionality after a customer selects rooms to book.
-through these functionalities a customer may add, remove, or clear their cart. the cart will also calculate 
+Through these functionalities a customer may add, remove, or clear their cart. the cart will also calculate 
 their total with taxes.
 
-made by Citlalli Martinez '''
+made by Citlalli Martinez 11/08/2025. '''
 
 from typing import List,Dict, Optional
 from datetime import datetime
