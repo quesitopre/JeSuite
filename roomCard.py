@@ -2,8 +2,28 @@ from PyQt5.QtWidgets import QWidget, QLabel, QVBoxLayout, QPushButton
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtCore import Qt
 
+import pydoc
+
 class RoomCard(QWidget):
+    '''
+    Represents an individual hotel room card, showing the room image, 
+    name, capacity, price, and a 'Book Now!' button.
+    '''
     def __init__(self, image_path, suite_name, capacity, price, stacked_widget = None):
+        '''
+        Initializes the RoomCard widget with image, name, capacity, price, 
+        and optional stacked widget for navigation.
+
+        Parameters:
+            image_path (str): Path to the room image.
+            suite_name (str): Name of the suite.
+            capacity (str): Maximum occupancy description.
+            price (str): Room price as a string.
+            stacked_widget (QStackedWidget, optional): For page navigation.
+
+        Returns:
+            None
+        '''
         super().__init__()
 
         self.image = image_path
@@ -15,6 +35,16 @@ class RoomCard(QWidget):
         self.initUI()
         
     def initUI(self):
+        '''
+        Sets up the RoomCard UI with image, labels, and a 'Book Now!' button.
+        Styles the card and arranges components vertically.
+
+        Parameters:
+            None
+
+        Returns:
+            None
+        '''
         self.setObjectName("RoomCard")
         self.setFixedSize(300,380)
         self.setStyleSheet("""
@@ -81,4 +111,16 @@ class RoomCard(QWidget):
         self.setLayout(layout)
 
     def go_to_reservation_page(self):
+        '''
+        Navigates to the reservation page by changing the stacked widget index.
+
+        Parameters:
+            None
+
+        Returns:
+            None
+        '''
         self.stacked_widget.setCurrentIndex(2)
+
+pydoc.writedoc("roomCard")
+

@@ -6,8 +6,22 @@ from roomSelection import RoomSelectionPage
 from shoppingCartPage import ShoppingCartPage
 from reservationPage import ReservationPage
 
+import pydoc
+
 class MainWindow(QMainWindow):
+
     def __init__(self):
+        '''
+        Initializes the main window with title, size, style, and sets up 
+        the stacked widget with all pages: HomePage, RoomSelectionPage, 
+        ShoppingCartPage, and ReservationPage.
+        
+        Params:
+            None
+
+        Returns:
+            None
+        '''
         super().__init__()
         self.setWindowTitle("JeSuite Hotel Reservation")
         self.resize(1000, 500)
@@ -22,13 +36,14 @@ class MainWindow(QMainWindow):
         self.stack = QStackedWidget()
         self.setCentralWidget(self.stack)
 
+        #Initialize pages
         home = HomePage(self.stack)
         room_selection = RoomSelectionPage(self.stack)
         shopping_cart = ShoppingCartPage(self.stack)
         reservation = ReservationPage(self.stack)
     
 
-
+        #Add pages to stacked widget
         self.stack.addWidget(home)
         self.stack.addWidget(room_selection)
         self.stack.addWidget(shopping_cart)
@@ -37,7 +52,19 @@ class MainWindow(QMainWindow):
 
 
 if __name__ == "__main__":
+    '''
+    Entry point of the application. Creates a QApplication, initializes 
+    MainWindow, shows it, and starts the event loop.
+    
+    Params:
+        None
+
+    Returns:
+        None
+    '''
     app = QApplication(sys.argv)
     window = MainWindow()
     window.show()
     sys.exit(app.exec_())
+
+pydoc.writedoc("main")

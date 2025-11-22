@@ -5,8 +5,24 @@ from PyQt5.QtCore import Qt
 
 from roomCard import RoomCard
 
-class RoomSelectionPage(QWidget): 
+import pydoc
+
+class RoomSelectionPage(QWidget):
+    '''
+    Displays all available hotel rooms in a horizontal layout, allowing 
+    users to browse and select a room.
+    '''
     def __init__(self, stacked_widget):
+        '''
+        Initializes the RoomSelectionPage, creates RoomCard instances for 
+        each room type, and arranges them in a horizontal layout.
+
+        Parameters:
+            stacked_widget (QStackedWidget): Used to navigate between pages.
+
+        Returns:
+            None
+        '''
         super().__init__()
         self.stacked_widget = stacked_widget
 
@@ -34,3 +50,5 @@ class RoomSelectionPage(QWidget):
 
     #def go_to_reservation_form(self):
      #   self.stacked_widget.setCurrentIndex(2)
+
+pydoc.writedoc("roomSelection")

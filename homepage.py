@@ -6,10 +6,25 @@ from PyQt5.QtWidgets import (
 ) 
 from PyQt5.QtGui import QPixmap
 
+import pydoc
+
 #calendar popup class
 class CalendarPopUp(QCalendarWidget):
-    #Popup calendar for selecting start and end dates
+    '''
+    Popup calendar for selecting start and end dates.
+    Calls a callback function with the selected dates.
+    '''
     def __init__(self, parent=None, callback=None):
+        '''
+        Initializes the CalendarPopUp widget.
+
+        Params:
+            parent: QWidget, the parent widget.
+            callback: function, a function to call with (start_date, end_date).
+
+        Returns:
+            None
+        '''
         super().__init__(parent)
         self.callback = callback
         self.setWindowFlags(Qt.Popup)
@@ -17,7 +32,18 @@ class CalendarPopUp(QCalendarWidget):
         self.start_date = None
 
     def on_date_selected(self, date):
-        #Select the starting and ending dates, then close ze popup
+        '''
+        Handles date selection. Stores the start date first, then the end date.
+        Ensures the start date is before the end date. Calls the callback function 
+        if defined and closes the popup.
+
+        Params:
+            date: QDate, the date clicked.
+
+        Returns:
+            None
+        '''
+
         if not self.start_date:
             self.start_date = date
         else:
@@ -31,7 +57,20 @@ class CalendarPopUp(QCalendarWidget):
 
 
 class HomePage(QWidget):
+    '''
+    The landing page of the hotel reservation system. 
+    Displays header, filters, background image, and search functionality.
+    '''
     def __init__(self, stacked_widget):
+        '''
+        Initializes the HomePage widget with header, filters, and background.
+
+        Params:
+            stacked_widget: QStackedWidget, used for navigation between pages.
+
+        Returns:
+            None
+        '''
         super().__init__()
         self.stacked_widget = stacked_widget
 
@@ -56,6 +95,15 @@ class HomePage(QWidget):
 
 
     def create_header(self):
+        '''
+        Creates the header layout with navigation labels and sign-in/up buttons.
+
+        Params:
+            None
+
+        Returns:
+            QHBoxLayout containing the header widgets.
+        '''
         header_layout = QHBoxLayout()
 
         company_logo = QLabel("Hotel logo")
@@ -80,6 +128,16 @@ class HomePage(QWidget):
     
 
     def create_categories(self):
+        '''
+        Creates search filters for location, people, and calendar dates, 
+        along with a search button.
+
+        Params:
+            None
+
+        Returns:
+            QHBoxLayout containing filter widgets and search button.
+        '''
         
         #hold all layouts and lays them out horizontally
         filter_layout = QHBoxLayout()
@@ -138,6 +196,15 @@ class HomePage(QWidget):
         return filter_layout
     
     def show_calendar_popup(self):
+        '''
+        Displays a popup calendar for selecting check-in and check-out dates.
+
+        Params:
+            None
+
+        Returns:
+            None
+        '''
         if self.calendar_popUp and self.calendar_popUp.isVisible():
             self.calendar_popUp.close()
             return
@@ -147,9 +214,30 @@ class HomePage(QWidget):
         self.calendar_popUp.show()
 
     def set_selected_dates(self, start_date, end_date):
+        '''
+        Updates the date button text with selected start and end dates.
+
+        Params:
+            start_date: QDate, selected start date
+            end_date: QDate, selected end date
+
+        Returns:
+            None
+        '''
         self.date_button.setText(
             f"{start_date.toString('MM/dd/yyyy')} - {end_date.toString('MM/dd/yyyy')}"
             )
         
     def go_to_room_selection(self):
+        '''
+        Switches the stacked widget to the room selection page.
+
+        Params:
+            None
+
+        Returns:
+            None
+        '''
         self.stacked_widget.setCurrentIndex(1)
+
+pydoc.writedoc("homepage")
