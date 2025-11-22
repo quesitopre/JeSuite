@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Python: module cart_Service</title>
+</head><body>
+
+<table class="heading">
+<tr class="heading-text decor">
+<td class="title">&nbsp;<br><strong class="title">cart_Service</strong></td>
+<td class="extra"><a href=".">index</a><br><a href="file:/Users/citlallimartinez/FinProj/JeSuite/backend/services/cart_Service.py">/Users/citlallimartinez/FinProj/JeSuite/backend/services/cart_Service.py</a></td></tr></table>
+    <p><span class="code">cart_Service&nbsp;Module&nbsp;manages&nbsp;the&nbsp;shopping&nbsp;cart&nbsp;functionality&nbsp;after&nbsp;a&nbsp;customer&nbsp;selects&nbsp;rooms&nbsp;to&nbsp;book.<br>
+Through&nbsp;these&nbsp;functionalities&nbsp;a&nbsp;customer&nbsp;may&nbsp;add,&nbsp;remove,&nbsp;or&nbsp;clear&nbsp;their&nbsp;cart.&nbsp;the&nbsp;cart&nbsp;will&nbsp;also&nbsp;calculate&nbsp;<br>
+their&nbsp;total&nbsp;with&nbsp;taxes.<br>
+&nbsp;<br>
+made&nbsp;by&nbsp;Citlalli&nbsp;Martinez&nbsp;11/08/2025.</span></p>
+<p>
+<table class="section">
+<tr class="decor index-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Classes</strong></td></tr>
+    
+<tr><td class="decor index-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><dl>
+<dt class="heading-text"><a href="builtins.html#object">builtins.object</a>
+</dt><dd>
+<dl>
+<dt class="heading-text"><a href="cart_Service.html#CartItem">CartItem</a>
+</dt><dt class="heading-text"><a href="cart_Service.html#CartService">CartService</a>
+</dt></dl>
+</dd>
+</dl>
+ <p>
+<table class="section">
+<tr class="decor title-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><a name="CartItem">class <strong>CartItem</strong></a>(<a href="builtins.html#object">builtins.object</a>)</td></tr>
+    
+<tr><td class="decor title-decor" rowspan=2><span class="code">&nbsp;&nbsp;&nbsp;</span></td>
+<td class="decor title-decor" colspan=2><span class="code"><a href="#CartItem">CartItem</a>(room,&nbsp;check_in,&nbsp;check_out)<br>
+&nbsp;<br>
+Class&nbsp;to&nbsp;represent&nbsp;an&nbsp;item&nbsp;in&nbsp;the&nbsp;shoppping&nbsp;cart.<br>
+&nbsp;<br>
+Attributes:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;room:&nbsp;The&nbsp;room&nbsp;<a href="builtins.html#object">object</a>&nbsp;being&nbsp;added&nbsp;to&nbsp;the&nbsp;cart.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;check_in(datetime):&nbsp;The&nbsp;check-in&nbsp;date&nbsp;for&nbsp;the&nbsp;room&nbsp;booking.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;check_out(datetime):&nbsp;The&nbsp;check-out&nbsp;date&nbsp;for&nbsp;the&nbsp;room&nbsp;booking.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;nights(int):&nbsp;The&nbsp;number&nbsp;of&nbsp;nights&nbsp;for&nbsp;the&nbsp;booking.<br>&nbsp;</span></td></tr>
+<tr><td>&nbsp;</td>
+<td class="singlecolumn">Methods defined here:<br>
+<dl><dt><a name="CartItem-__init__"><strong>__init__</strong></a>(self, room, check_in, check_out)</dt><dd><span class="code">A&nbsp;constructor&nbsp;to&nbsp;initialize&nbsp;a&nbsp;cart&nbsp;item&nbsp;with&nbsp;room&nbsp;and&nbsp;check-in&nbsp;&amp;&nbsp;check-out&nbsp;dates.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;room&nbsp;(room):&nbsp;The&nbsp;type&nbsp;of&nbsp;room(double,&nbsp;king,&nbsp;queen,&nbsp;suite)&nbsp;to&nbsp;add&nbsp;to&nbsp;the&nbsp;cart.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;check_in&nbsp;(datetime):&nbsp;The&nbsp;check-in&nbsp;date.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;check_out&nbsp;(datetime):&nbsp;The&nbsp;check-out&nbsp;date.</span></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><span class="code">dictionary&nbsp;for&nbsp;instance&nbsp;variables</span></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><span class="code">list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object</span></dd>
+</dl>
+</td></tr></table> <p>
+<table class="section">
+<tr class="decor title-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><a name="CartService">class <strong>CartService</strong></a>(<a href="builtins.html#object">builtins.object</a>)</td></tr>
+    
+<tr><td class="decor title-decor" rowspan=2><span class="code">&nbsp;&nbsp;&nbsp;</span></td>
+<td class="decor title-decor" colspan=2><span class="code">''Class&nbsp;to&nbsp;manage&nbsp;the&nbsp;shopping&nbsp;cart&nbsp;functionality&nbsp;for&nbsp;hotel&nbsp;room&nbsp;bookings.<br>
+&nbsp;<br>
+Attributes:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;cartItems&nbsp;(List[<a href="#CartItem">CartItem</a>]):&nbsp;A&nbsp;list&nbsp;to&nbsp;hold&nbsp;items&nbsp;added&nbsp;to&nbsp;the&nbsp;cart.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;tax_rate&nbsp;(float):&nbsp;The&nbsp;tax&nbsp;rate&nbsp;applied&nbsp;to&nbsp;the&nbsp;total&nbsp;price.<br>&nbsp;</span></td></tr>
+<tr><td>&nbsp;</td>
+<td class="singlecolumn">Methods defined here:<br>
+<dl><dt><a name="CartService-__init__"><strong>__init__</strong></a>(self)</dt><dd><span class="code">constructor&nbsp;to&nbsp;initialize&nbsp;an&nbsp;empty&nbsp;cart&nbsp;and&nbsp;set&nbsp;the&nbsp;tax&nbsp;rate&nbsp;to&nbsp;10%</span></dd></dl>
+
+<dl><dt><a name="CartService-addCartItem"><strong>addCartItem</strong></a>(
+    self,
+    room,
+    check_in: datetime.datetime,
+    check_out: datetime.datetime
+)</dt><dd><span class="code">Add&nbsp;a&nbsp;room&nbsp;to&nbsp;the&nbsp;shopping&nbsp;cart.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;room&nbsp;(room):&nbsp;A&nbsp;room&nbsp;<a href="builtins.html#object">object</a>&nbsp;to&nbsp;add&nbsp;to&nbsp;the&nbsp;cart.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;check_in&nbsp;(datetime):&nbsp;The&nbsp;check-in&nbsp;date.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;check_out&nbsp;(datetime):&nbsp;The&nbsp;check-out&nbsp;date.</span></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><span class="code">dictionary&nbsp;for&nbsp;instance&nbsp;variables</span></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><span class="code">list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object</span></dd>
+</dl>
+</td></tr></table></td></tr></table><p>
+<table class="section">
+<tr class="decor functions-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Functions</strong></td></tr>
+    
+<tr><td class="decor functions-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><dl><dt><a name="-calculateCartTotal"><strong>calculateCartTotal</strong></a>(self) -&gt; float</dt><dd><span class="code">Calculate&nbsp;the&nbsp;total&nbsp;price&nbsp;of&nbsp;all&nbsp;items&nbsp;in&nbsp;the&nbsp;cart&nbsp;with&nbsp;tax.<br>
+&nbsp;<br>
+Iterates&nbsp;through&nbsp;all&nbsp;the&nbsp;cart&nbsp;items&nbsp;and&nbsp;multiplies&nbsp;the&nbsp;price&nbsp;of&nbsp;the&nbsp;room&nbsp;with&nbsp;<br>
+the&nbsp;number&nbsp;of&nbsp;nights&nbsp;and&nbsp;the&nbsp;tax&nbsp;of&nbsp;10%.&nbsp;Each&nbsp;iteration&nbsp;adds&nbsp;to&nbsp;the&nbsp;subtotal.&nbsp;Which&nbsp;is&nbsp;<br>
+rounded&nbsp;to&nbsp;2&nbsp;decimal&nbsp;places.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;float:&nbsp;&nbsp;The&nbsp;total&nbsp;price&nbsp;of&nbsp;items&nbsp;in&nbsp;the&nbsp;cart&nbsp;including&nbsp;tax.</span></dd></dl>
+ <dl><dt><a name="-clearCart"><strong>clearCart</strong></a>(self)</dt><dd><span class="code">Remove&nbsp;all&nbsp;items&nbsp;from&nbsp;the&nbsp;shopping&nbsp;cart&nbsp;with&nbsp;.clear()&nbsp;function.</span></dd></dl>
+ <dl><dt><a name="-removeCartItem"><strong>removeCartItem</strong></a>(self, index: int) -&gt; bool</dt><dd><span class="code">Removes&nbsp;an&nbsp;item&nbsp;from&nbsp;the&nbsp;cart&nbsp;by&nbsp;its&nbsp;index&nbsp;position.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;index&nbsp;(int):&nbsp;The&nbsp;index&nbsp;of&nbsp;the&nbsp;item&nbsp;to&nbsp;be&nbsp;removed&nbsp;from&nbsp;the&nbsp;cart.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;bool:&nbsp;&nbsp;True&nbsp;if&nbsp;the&nbsp;item&nbsp;was&nbsp;successfully&nbsp;removed&nbsp;or&nbsp;else&nbsp;false.</span></dd></dl>
+</td></tr></table><p>
+<table class="section">
+<tr class="decor data-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Data</strong></td></tr>
+    
+<tr><td class="decor data-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><strong>Dict</strong> = typing.Dict<br>
+<strong>List</strong> = typing.List<br>
+<strong>Optional</strong> = typing.Optional</td></tr></table>
+</body></html>
