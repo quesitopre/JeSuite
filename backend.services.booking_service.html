@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Python: module backend.services.booking_service</title>
+</head><body>
+
+<table class="heading">
+<tr class="heading-text decor">
+<td class="title">&nbsp;<br><strong class="title"><a href="backend.html" class="white">backend</a>.<a href="backend.services.html" class="white">services</a>.booking_service</strong></td>
+<td class="extra"><a href=".">index</a><br><a href="file:/Users/citlallimartinez/FinProj/JeSuite/backend/services/booking_service.py">/Users/citlallimartinez/FinProj/JeSuite/backend/services/booking_service.py</a></td></tr></table>
+    <p><span class="code">Booking&nbsp;Service&nbsp;Module&nbsp;<br>
+Module&nbsp;manages&nbsp;functionality&nbsp;for&nbsp;creating,&nbsp;fetching,&nbsp;and&nbsp;inputting&nbsp;booking&nbsp;data&nbsp;to&nbsp;a&nbsp;csv&nbsp;file.<br>
+&nbsp;<br>
+Made&nbsp;by&nbsp;Citlalli&nbsp;Martinez&nbsp;11/08/2025.</span></p>
+<p>
+<table class="section">
+<tr class="decor pkg-content-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Modules</strong></td></tr>
+    
+<tr><td class="decor pkg-content-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><table><tr><td class="multicolumn"><a href="csv.html">csv</a><br>
+</td><td class="multicolumn"><a href="os.html">os</a><br>
+</td><td class="multicolumn"></td><td class="multicolumn"></td></tr></table></td></tr></table><p>
+<table class="section">
+<tr class="decor index-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Classes</strong></td></tr>
+    
+<tr><td class="decor index-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><dl>
+<dt class="heading-text"><a href="builtins.html#object">builtins.object</a>
+</dt><dd>
+<dl>
+<dt class="heading-text"><a href="backend.services.booking_service.html#BookingService">BookingService</a>
+</dt></dl>
+</dd>
+</dl>
+ <p>
+<table class="section">
+<tr class="decor title-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><a name="BookingService">class <strong>BookingService</strong></a>(<a href="builtins.html#object">builtins.object</a>)</td></tr>
+    
+<tr><td class="decor title-decor" rowspan=2><span class="code">&nbsp;&nbsp;&nbsp;</span></td>
+<td class="decor title-decor" colspan=2><span class="code"><a href="#BookingService">BookingService</a>(booking_file='bookings.csv')<br>
+&nbsp;<br>
+<br>&nbsp;</span></td></tr>
+<tr><td>&nbsp;</td>
+<td class="singlecolumn">Methods defined here:<br>
+<dl><dt><a name="BookingService-__init__"><strong>__init__</strong></a>(self, booking_file='bookings.csv')</dt><dd><span class="code">Constructor&nbsp;to&nbsp;initialize&nbsp;the&nbsp;booking&nbsp;service&nbsp;with&nbsp;a&nbsp;CSV&nbsp;file.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;booking_file&nbsp;=&nbsp;'bookings.csv':&nbsp;The&nbsp;path&nbsp;to&nbsp;the&nbsp;CSV&nbsp;file&nbsp;to&nbsp;store&nbsp;booking&nbsp;data.</span></dd></dl>
+
+<dl><dt><a name="BookingService-generateBookingID"><strong>generateBookingID</strong></a>(self) -&gt; str</dt><dd><span class="code">Generate&nbsp;a&nbsp;unique&nbsp;booking&nbsp;ID&nbsp;for&nbsp;the&nbsp;reservation.<br>
+&nbsp;<br>
+This&nbsp;method&nbsp;reads&nbsp;from&nbsp;CSV&nbsp;file&nbsp;to&nbsp;generate&nbsp;a&nbsp;new&nbsp;unique&nbsp;booking&nbsp;ID&nbsp;if&nbsp;it&nbsp;does<br>
+not&nbsp;already&nbsp;exist.&nbsp;Starting&nbsp;from&nbsp;numerical&nbsp;value&nbsp;BK001&nbsp;and&nbsp;increments&nbsp;by&nbsp;1&nbsp;for&nbsp;<br>
+each&nbsp;new&nbsp;booking.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;str:&nbsp;&nbsp;A&nbsp;unique&nbsp;booking&nbsp;ID&nbsp;in&nbsp;the&nbsp;format&nbsp;BK000(&nbsp;000&nbsp;a&nbsp;3&nbsp;digit&nbsp;number).</span></dd></dl>
+
+<dl><dt><a name="BookingService-getAllBookings"><strong>getAllBookings</strong></a>(self)</dt><dd><span class="code">Retrieve&nbsp;all&nbsp;bookings&nbsp;from&nbsp;the&nbsp;CSV&nbsp;file.&nbsp;<br>
+&nbsp;<br>
+This&nbsp;method&nbsp;reads&nbsp;the&nbsp;CSV&nbsp;file&nbsp;and&nbsp;returns&nbsp;the&nbsp;booking&nbsp;information&nbsp;as&nbsp;a&nbsp;<br>
+list&nbsp;of&nbsp;dictionaries.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;bookings&nbsp;=&nbsp;list[dict[str,str]]:&nbsp;A&nbsp;list&nbsp;of&nbsp;dictionaries,&nbsp;each&nbsp;representing&nbsp;a&nbsp;booking&nbsp;record.</span></dd></dl>
+
+<dl><dt><a name="BookingService-getBookingByID"><strong>getBookingByID</strong></a>(self, booking_id)</dt><dd><span class="code">Find&nbsp;and&nbsp;retrieve&nbsp;a&nbsp;specific&nbsp;booking&nbsp;by&nbsp;its&nbsp;ID.<br>
+&nbsp;This&nbsp;method&nbsp;searches&nbsp;through&nbsp;the&nbsp;bookings&nbsp;that&nbsp;match&nbsp;the&nbsp;desired&nbsp;booking&nbsp;ID.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;booking_id&nbsp;(str):&nbsp;The&nbsp;unique&nbsp;ID&nbsp;of&nbsp;the&nbsp;booking&nbsp;to&nbsp;retrieve.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;dict[str,str]&nbsp;|&nbsp;None:&nbsp;A&nbsp;dictionary&nbsp;representing&nbsp;the&nbsp;booking&nbsp;record&nbsp;if&nbsp;found<br>
+&nbsp;&nbsp;&nbsp;&nbsp;or&nbsp;None&nbsp;if&nbsp;no&nbsp;matching&nbsp;booking&nbsp;is&nbsp;found.</span></dd></dl>
+
+<dl><dt><a name="BookingService-saveBooking"><strong>saveBooking</strong></a>(self, booking: backend.booking.Booking) -&gt; str</dt><dd><span class="code">Save&nbsp;a&nbsp;new&nbsp;booking&nbsp;&nbsp;to&nbsp;the&nbsp;CSV&nbsp;file.&nbsp;<br>
+&nbsp;<br>
+This&nbsp;method&nbsp;appends&nbsp;a&nbsp;new&nbsp;booking&nbsp;record&nbsp;to&nbsp;the&nbsp;CSV&nbsp;file.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;booking&nbsp;(Booking):&nbsp;A&nbsp;Booking&nbsp;<a href="builtins.html#object">object</a>&nbsp;containing&nbsp;the&nbsp;booking&nbsp;details.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;str:&nbsp;The&nbsp;unique&nbsp;booking&nbsp;ID&nbsp;is&nbsp;returned.</span></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><span class="code">dictionary&nbsp;for&nbsp;instance&nbsp;variables</span></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><span class="code">list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object</span></dd>
+</dl>
+</td></tr></table></td></tr></table>
+</body></html>

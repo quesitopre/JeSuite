@@ -29,7 +29,6 @@ class CartItem:
         self.check_in = check_in
         self.check_out = check_out
         self.nights = (check_out - check_in).days
-        self.cart_items: List[Dict]= [] #Empty list to hold items in cart
 
 class CartService:
     """''Class to manage the shopping cart functionality for hotel room bookings.
