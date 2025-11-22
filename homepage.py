@@ -5,8 +5,13 @@ from PyQt5.QtWidgets import (
     QVBoxLayout, QLabel, QCalendarWidget
 ) 
 from PyQt5.QtGui import QPixmap
+import pydoc
 
 #calendar popup class
+""" Popup Calendar Class for Date Selection
+intiliazes to none parent and callback function
+sets window flags to popup
+ """
 class CalendarPopUp(QCalendarWidget):
     #Popup calendar for selecting start and end dates
     def __init__(self, parent=None, callback=None):
@@ -15,7 +20,9 @@ class CalendarPopUp(QCalendarWidget):
         self.setWindowFlags(Qt.Popup)
         self.clicked.connect(self.on_date_selected)
         self.start_date = None
-
+        """Handles date selection from the calendar. If no start date is selected,
+        the clicked date is set as the start date. If a start date is already selected,
+        the clicked date is treated as the end date. The method ensures that the start date"""
     def on_date_selected(self, date):
         #Select the starting and ending dates, then close ze popup
         if not self.start_date:
@@ -29,7 +36,7 @@ class CalendarPopUp(QCalendarWidget):
                 self.callback(self.start_date,end_date)
                 self.close( )
 
-
+"""creates HomePage class that defines the homepage UI layout and components"""
 class HomePage(QWidget):
     def __init__(self, stacked_widget):
         super().__init__()
@@ -41,6 +48,10 @@ class HomePage(QWidget):
        
         main_layout.addLayout(header)
 
+        
+        
+        """Defines the main layout of the homepage, including header and filter sections 
+        and a background image. The header contains navigation elements"""
         #background
         self.label = QLabel(self)
         self.label.setAlignment(Qt.AlignCenter)
@@ -57,7 +68,9 @@ class HomePage(QWidget):
 
     def create_header(self):
         header_layout = QHBoxLayout()
-
+        """Creates the header layout with navigation elements such as logo,Home text,
+        About Us, Services, Membership, Contact Us, Sign In, and Sign Up buttons."""
+    
         company_logo = QLabel("Hotel logo")
         home_text = QLabel("Home")
         about_text = QLabel("About Us")
@@ -81,21 +94,21 @@ class HomePage(QWidget):
 
     def create_categories(self):
         
-        #hold all layouts and lays them out horizontally
+        """filter all layouts and lays them out horizontally"""
         filter_layout = QHBoxLayout()
 
-        #individual layouts for each filter
+        """individual layouts for each filter vertically"""
         location_layout = QVBoxLayout()
         people_layout = QVBoxLayout()
         calendar_layout = QVBoxLayout()
 
-
+        """Creates and configures the location, people, and calendar filter components."""
         #location
         location_label = QLabel("Location:")
         location_combo = QComboBox()
         location_combo.addItems(["Los Angeles, California", "Santa Monica, California", "Beverly Hill, California", "Malibu, California"])
         self.location_combo = location_combo.currentText()
-
+        
         #people
         people_label = QLabel("People:")
         people_combo = QComboBox()
@@ -103,19 +116,20 @@ class HomePage(QWidget):
         self.people_combo = people_combo.currentText()
 
         #calendar
+        
         calendar_label = QLabel("Calendar:")
         calendar_combo = QComboBox()
         calendar_combo.addItems(["Check-in and Check-out Dates"])
         self.calendar_combo = calendar_combo.currentText()
-        
+        """Creates and configures the date selection button that triggers the calendar popup."""
         #datebutton
         self.date_button = QPushButton("Select Dates")
         self.date_button.clicked.connect(self.show_calendar_popup)
-        
+        """Creates and configures the Search button that navigates to the room selection page."""
         #searchbutton
         search_button = QPushButton("Search")
         search_button.clicked.connect(self.go_to_room_selection)
-
+        """Adds the individual filter layouts to the main filter layout."""
         #adding location layout to filter layout
         location_layout.addWidget(location_label)
         location_layout.addWidget(location_combo)
@@ -136,7 +150,7 @@ class HomePage(QWidget):
         #filter_layout.addWidget(self.label)
         
         return filter_layout
-    
+    """Shows the calendar popup for date selection."""
     def show_calendar_popup(self):
         if self.calendar_popUp and self.calendar_popUp.isVisible():
             self.calendar_popUp.close()
@@ -145,11 +159,15 @@ class HomePage(QWidget):
         button_pos =self.date_button.mapToGlobal(self.date_button.rect().bottomLeft())
         self.calendar_popUp.move(button_pos)
         self.calendar_popUp.show()
-
+    """Sets the selected start and end dates on the date button."""
     def set_selected_dates(self, start_date, end_date):
         self.date_button.setText(
             f"{start_date.toString('MM/dd/yyyy')} - {end_date.toString('MM/dd/yyyy')}"
             )
-        
+
+        """Switch the UI to the room selection page.Uses the stacked widget to display 
+        the page at index 1,  which corresponds to the room selection interface.
+        """
     def go_to_room_selection(self):
         self.stacked_widget.setCurrentIndex(1)
+pydoc.writedoc("homepage")

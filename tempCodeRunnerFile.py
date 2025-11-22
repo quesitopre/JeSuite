@@ -1,3 +1,4 @@
+import pydoc
 import sys
 from PyQt5.QtWidgets import QApplication, QMainWindow, QStackedWidget
 from homepage import HomePage
@@ -6,13 +7,16 @@ from roomSelection import RoomSelectionPage
 from shoppingCartPage import ShoppingCartPage
 from reservationPage import ReservationPage
 
-""" Main Window Class for JeSuite Hotel Reservation Application Sets up the main window with a stacked widget to manage multiple pages:
- - HomePage 
- - RoomSelectionPage 
- - ShoppingCartPage 
- - ReservationPage 
- The stacked widget allows for easy navigation between different sections of the application. """
 
+""" Main Window Class for JeSuite Hotel Reservation Application
+  Sets up the main window with a stacked widget to manage multiple pages:
+  - HomePage
+  - RoomSelectionPage
+  - ShoppingCartPage
+  - ReservationPage
+  
+  The stacked widget allows for easy navigation between different sections of the application.
+  """
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
@@ -25,7 +29,8 @@ class MainWindow(QMainWindow):
             }
         """)
 
-
+        """
+        """
         self.stack = QStackedWidget()
         self.setCentralWidget(self.stack)
 
@@ -48,3 +53,5 @@ if __name__ == "__main__":
     window = MainWindow()
     window.show()
     sys.exit(app.exec_())
+
+pydoc.writedoc("main")
