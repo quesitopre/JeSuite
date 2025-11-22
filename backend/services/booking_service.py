@@ -12,7 +12,7 @@ from datetime import datetime
 class BookingService: 
 
     def __init__(self, booking_file = 'bookings.csv'):
-        """constructor to initialize the booking service with a CSV file.
+        """Constructor to initialize the booking service with a CSV file.
 
         Args:
             booking_file = 'bookings.csv': The path to the CSV file to store booking data.
@@ -21,9 +21,9 @@ class BookingService:
         self._initialize_file()
     
     def _initialize_file(self): 
-        """ Create  the CSV file if it does not exists. 
+        """ Create the CSV file if it does not exists. 
         
-        This method  sets up the file structure for storing booking information and initializes
+        This method sets up the file structure for storing booking information and initializes
           the CSV file with  the appropriate column headers.
         """
         #Create a CSV file and folder.

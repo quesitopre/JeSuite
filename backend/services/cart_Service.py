@@ -33,6 +33,7 @@ class CartItem:
 
 class CartService:
     """''Class to manage the shopping cart functionality for hotel room bookings.
+
     Attributes:
         cartItems (List[CartItem]): A list to hold items added to the cart.
         tax_rate (float): The tax rate applied to the total price.
@@ -77,16 +78,16 @@ def removeCartItem( self,index: int)-> bool: #boolean to indicate if item was re
 def clearCart(self):    
     """Remove all items from the shopping cart with .clear() function.
     """
-    '''Clear all items from the cart'''
+    '''Clear all items from the cart.'''
     self.cartItems.clear() #clear list of items  in cart
     
 # cart function to calculate the total price of items in the cart
 def calculateCartTotal(self) -> float:
-    """Calculate  the total price of all items in the cart with tax.
+    """Calculate the total price of all items in the cart with tax.
 
-    Itterates through all the cart items and multiplies the price of the room with 
-    the number of nights  and the tax of 10%. each iteration adds to the subtotal 
-    that is rounded to 2 decimal places.
+    Iterates through all the cart items and multiplies the price of the room with 
+    the number of nights and the tax of 10%. Each iteration adds to the subtotal. Which is 
+    rounded to 2 decimal places.
 
     Returns:
         float:  The total price of items in the cart including tax.
