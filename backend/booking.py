@@ -3,6 +3,8 @@ from dataclasses import dataclass, field
 from typing import List, Optional
 from homepage import CalendarPopUp, HomePage
 from backend.room import Room
+from backend.customer import Customer
+from backend.roomSearch import roomSearch
 import os
 import csv
 import pydoc
@@ -28,64 +30,77 @@ class Booking:
     def __init__(self):
         #make protected
         #use in email class later
-        self.room_one = room_one_price
-        self.room_two = room_two_price
-        self.total_amount = calculate_total
         self.booking_id = 123
-        self.nights = self.start_date - self.end_date
         self.payment_approved = True
+        self.customer = Customer
+        self.room = Room
+        self.roomSearch = roomSearch
 
     '''
     The info_getter retrieves the vars from other classes
     '''
 
-    def info_getter(self):
+    def info_getter(self) -> dict:
         return{
-            self.customer_first_name,
-            self.customer_last_name,
-            self.credit_card_num, 
-            self.credit_card_cvc, 
-            self.billing_zip_code, 
-            self.customer_email, 
-            self.check_in_date,
-            self.check_out_date,
-            self.location_combo,
-            self.cart_items
-            }
-
+            "first_name": self.customer_first_name,
+            "last_name": self.customer_last_name,
+            "email": self.customer_email,
+            "cart_items": [item.room.room_type for item in self.cart_service.cartItems],
+            "total_amount": self.calculate_total(),
+            "booking_id": self.booking_id
+        }
     '''
     The update_availability method changes the availability from true to false if it
     is detected in the cart
     '''
+    def bookingItems(self):
+        #Return cart items separately depending on how many there are.
+        self.items = self.cart_service.cartItems
+        self.count = len(self.items)
+
+        if self.count == 0:
+            return "No items in cart."
+        elif self.count == 1:
+            # Return details of the single item
+            self.item = self.items[0]
+            return {
+                "room_type": self.item.room.room_type,
+                "check_in": self.item.check_in.strftime("%Y-%m-%d"),
+                "check_out": self.item.check_out.strftime("%Y-%m-%d"),
+                "nights": self.item.nights,
+                "price_per_night": self.item.room.price_per_night
+            }
+        else:
+            # Return details of both items separately
+            return [
+                {
+                    "room_type": self.items[0].room.room_type,
+                    "check_in": self.items[0].check_in.strftime("%Y-%m-%d"),
+                    "check_out": self.items[0].check_out.strftime("%Y-%m-%d"),
+                    "nights": self.items[0].nights,
+                    "price_per_night": self.items[0].room.price_per_night
+                },
+                {
+                    "room_type": self.items[1].room.room_type,
+                    "check_in": self.items[1].check_in.strftime("%Y-%m-%d"),
+                    "check_out": self.items[1].check_out.strftime("%Y-%m-%d"),
+                    "nights": self.items[1].nights,
+                    "price_per_night": self.items[1].room.price_per_night
+                }
+            ]
+        
 
     def update_availability(self):
-        for room in self.cart_items:
-            if self.single_queen in self.cart_items:
-                self.single_queen.set_room("Queen", 1, 120.0, 209, False)
-            elif self.single_king in self.cart_items:
-                self.single_king.set_room("King", 1, 170.0, 167, False)
-            elif self.double in self.cart_items:
-                self.double.set_room("Queen", 2, 210.0, 38, False)
-            else:
-                self.suite.set_room("King", 2, 280.0, 412, False)
+        #Mark rooms in cart as unavailable.
+        for item in self.cart_service.cartItems:
+            item.room.is_available = False  # assumes Room has an 'available' attribute
 
-    '''
-    The calculate_total takes the previously calculated tax and adds it to the 
-    room_total to give back the total for everything
-    '''
-
-    def calculate_total(self):
-        return self.rooms_total + self.calculate_tax()
-    
-
-    '''
-    The calculate tax gets the total of the rooms, whether it be one or 
-    two rooms in the cart and multiplies it by the tax to return how much tax
-    will be
-    '''
-
-    def calculate_tax(self):
-        return self.rooms_total * .0925
-
+    def confirm_payment(self):
+        #Simulate payment approval.
+        if len(self.cart_service.cartItems) == 0:
+            return ValueError("Cart is empty. Cannot confirm booking.")
+        self.payment_approved = True
+        return f"Payment confirmed for booking {self.booking_id}"
+   
 
 
