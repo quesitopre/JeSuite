@@ -28,8 +28,7 @@ class Room:
         self.hotel_amenities = ["Pool", "Gym", "Free Breakfast", "Wifi", "Free Parking", "Office Area", "Laundry"]
         self.room_amenitites = ["Kitchen", "TV", "Room Service"]
         self.is_available = True
-        self.check_in_date = None
-        self.check_out_date = None
+        
 
     '''
     The setroom def creates the constructor for the objects in the roomSearch class
