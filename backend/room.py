@@ -33,6 +33,7 @@ class Room:
     '''
     The setroom def creates the constructor for the objects in the roomSearch class
     I did it this way since it is more simple and efficient than writing 4 seperate methods
+    and implements OOP
     '''
     def set_room(self, bed_type, num_beds, price_per_night, room_num, is_available):
         self.bed_type = bed_type
