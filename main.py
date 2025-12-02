@@ -5,6 +5,7 @@ from roomSelection import RoomSelectionPage
 #from roomCard import RoomCard
 from shoppingCartPage import ShoppingCartPage
 from reservationPage import ReservationPage
+from confirmationPage import ConfirmationPage
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -14,7 +15,7 @@ class MainWindow(QMainWindow):
         #self.ssetStyleSheet("background-color: lightblue;")
         self.setStyleSheet("""
             MainWindow{
-                background-color: lightblue;
+                background-color: white;          
             }
         """)
 
@@ -26,13 +27,14 @@ class MainWindow(QMainWindow):
         room_selection = RoomSelectionPage(self.stack)
         shopping_cart = ShoppingCartPage(self.stack)
         reservation = ReservationPage(self.stack)
-    
+        confirmation_text = ConfirmationPage(self.stack)
 
 
         self.stack.addWidget(home)
         self.stack.addWidget(room_selection)
         self.stack.addWidget(shopping_cart)
         self.stack.addWidget(reservation)
+        self.stack.addWidget(confirmation_text)
 
 
 

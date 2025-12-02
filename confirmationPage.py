@@ -2,7 +2,7 @@ from PyQt5.QtWidgets import QWidget, QLabel, QVBoxLayout, QPushButton
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtCore import Qt
 
-class ReservationPage(QWidget):
+class ConfirmationPage(QWidget):
     def __init__(self, stacked_widget):
         super().__init__()
         self.stacked_widget = stacked_widget
@@ -12,26 +12,12 @@ class ReservationPage(QWidget):
     def initUI(self):
         layout = QVBoxLayout()
         
-        label = QLabel("reservation Page to confirm details")
+        label = QLabel("Confirmation Page to confirm details")
         self.setStyleSheet("""
             QLabel{
                 color: black;
             }
-            QPushButton {
-                background-color: #8c6d3d;
-            }
-            QComboBox {
-                background-color: #8c6d3d;
-            }
         """)
-
-        self.button = QPushButton("Go to confirmation page")
-        self.button.clicked.connect(self.go_to_confirmation)
-
         layout.addWidget(label)
-        layout.addWidget(self.button)
 
         self.setLayout(layout)
-
-    def go_to_confirmation(self):
-        self.stacked_widget.setCurrentIndex(4)
