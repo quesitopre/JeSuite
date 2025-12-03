@@ -31,6 +31,10 @@ class CartItem:
         self.check_out = check_out
         self.nights = (check_out - check_in).days
 
+        def getItemTotal(self)-> float:
+            """ Calculate the total price for this cart item.""""
+            return self.room.price_per_night * self.nights
+
 class CartService:
     """''Class to manage the shopping cart functionality for hotel room bookings.
 
@@ -81,7 +85,11 @@ def clearCart(self):
     '''Clear all items from the cart.'''
     self.cartItems.clear() #clear list of items  in cart
     
-# cart function to calculate the total price of items in the cart
+def isCartEmpty(self) -> bool:
+    """Check if the cart is empty."""
+    return len(self.cartItems) == 0 #return true if cart is empty
+
+
 def calculateCartTotal(self) -> float:
     """Calculate the total price of all items in the cart with tax.
 
@@ -97,5 +105,11 @@ def calculateCartTotal(self) -> float:
     for item in self.cartItems:
         subtotal +=item.room.price_per_night * item.nights* (1 + self.tax_rate)
     return round(subtotal, 2) #round to 2 decimal places
+def getItemCount(self) -> int:
+    """Get the number of items in the cart.
 
-# need to return number of items in cart and details of items in cart
+    Returns:
+        int: The number of items currently in the cart.
+    """
+    return len(self.cartItems)
+
