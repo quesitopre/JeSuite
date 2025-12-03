@@ -24,13 +24,16 @@ class Room:
     that dont change from room to room like amenities for room and hotel
     '''
     
-    def __init__(self, bed_type, num_beds, price_per_night, room_num, is_available):
+    def __init__(self):
         self.room_number = 0
         self.room_type = ["Suite", "Double", "Single_Queen", "Single_King"]
         self.price_per_night = 0.0
         self.hotel_amenities = ["Pool", "Gym", "Free Breakfast", "Wifi", "Free Parking", "Office Area", "Laundry"]
         self.room_amenitites = ["Kitchen", "TV", "Room Service"]
         self.is_available = True
+
+    def __repr__(self):
+        return f"Room({self.bed_type}, beds={self.num_beds}, ${self.price_per_night}/night)"
         
 
     '''
