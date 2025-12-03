@@ -1,8 +1,10 @@
 # this is the room file
 from dataclasses import dataclass, field
 from typing import List, Optional
-from homepage import CalendarPopUp, HomePage
-import pydoc
+from homepage import HomePage , CalendarPopUp
+
+
+
 
 
 class Room:
@@ -21,6 +23,7 @@ class Room:
     The __init__ gives the default room variables and hard codes variables
     that dont change from room to room like amenities for room and hotel
     '''
+    
     def __init__(self, bed_type, num_beds, price_per_night, room_num, is_available):
         self.room_number = 0
         self.room_type = ["Suite", "Double", "Single_Queen", "Single_King"]
