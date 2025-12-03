@@ -39,3 +39,4 @@ test.removeItem(0)
 test.printIt()
 
 
+cart = CartService()
