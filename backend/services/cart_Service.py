@@ -32,7 +32,7 @@ class CartItem:
         self.nights = (check_out - check_in).days
 
         def getItemTotal(self)-> float:
-            """ Calculate the total price for this cart item.""""
+            """ Calculate the total price for this cart item."""
             return self.room.price_per_night * self.nights
 
 class CartService:
