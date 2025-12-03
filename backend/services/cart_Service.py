@@ -17,6 +17,7 @@ class CartItem:
         check_out(datetime): The check-out date for the room booking.
         nights(int): The number of nights for the booking.
     """
+    @property
     def __init__(self,room, check_in,check_out):
         """A constructor to initialize a cart item with room and check-in & check-out dates.
 
