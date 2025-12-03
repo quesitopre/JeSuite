@@ -2,9 +2,9 @@
 from dataclasses import dataclass, field
 from typing import List, Optional
 from homepage import CalendarPopUp, HomePage
-from backend.room import Room
+from room import Room
 from backend.customer import Customer
-from backend.roomSearch import roomSearch
+from roomSearch import roomSearch
 import os
 import csv
 import pydoc
