@@ -105,6 +105,7 @@ def calculateCartTotal(self) -> float:
     for item in self.cartItems:
         subtotal +=item.room.price_per_night * item.nights* (1 + self.tax_rate)
     return round(subtotal, 2) #round to 2 decimal places
+
 def getItemCount(self) -> int:
     """Get the number of items in the cart.
 
