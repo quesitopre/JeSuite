@@ -11,7 +11,7 @@ class RoomAmenities(QWidget):
     def initUI(self):
         self.setObjectName("RoomAmenities")
         self.setStyleSheet("""
-            #RoomAmenities {
+            RoomAmenities {
                 background-color: white;
                 border: 1px solid #000000;
                 border-radius: 12px;
