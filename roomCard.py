@@ -81,4 +81,6 @@ class RoomCard(QWidget):
         self.setLayout(layout)
 
     def go_to_reservation_page(self):
+        cart_page = self.stacked_widget.widget(2)  # index of ShoppingCartPage
+        cart_page.add_room(self.name, float(self.price.strip("$")))
         self.stacked_widget.setCurrentIndex(2)
