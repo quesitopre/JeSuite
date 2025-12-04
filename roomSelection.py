@@ -1,9 +1,11 @@
-from PyQt5.QtWidgets import QWidget, QGridLayout, QHBoxLayout
+from PyQt5.QtWidgets import QWidget, QGridLayout, QHBoxLayout, QVBoxLayout
 from PyQt5.QtCore import QDate
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtCore import Qt
 
 from roomCard import RoomCard
+from roomAmenities import RoomAmenities
+#from homepage import HomePage
 
 import pydoc
 
@@ -26,6 +28,11 @@ class RoomSelectionPage(QWidget):
         super().__init__()
         self.stacked_widget = stacked_widget
 
+        layout = QVBoxLayout()
+
+        amenities = RoomAmenities()
+        layout.addWidget(amenities)
+
         grid = QHBoxLayout()
         
 
@@ -45,7 +52,9 @@ class RoomSelectionPage(QWidget):
         grid.addWidget(double)
         grid.addWidget(suite)
 
-        self.setLayout(grid)
+        layout.addLayout(grid)
+
+        self.setLayout(layout)
 
 
     #def go_to_reservation_form(self):

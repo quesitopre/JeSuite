@@ -41,6 +41,12 @@ class ShoppingCartPage(QWidget):
             QLabel{
                 color: black;
             }
+            QPushButton {
+                background-color: #8c6d3d;
+            }
+            QComboBox {
+                background-color: #8c6d3d;
+            }
         """)
         
         self.button = QPushButton("Go to reservation page")

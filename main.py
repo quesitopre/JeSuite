@@ -5,6 +5,7 @@ from roomSelection import RoomSelectionPage
 #from roomCard import RoomCard
 from shoppingCartPage import ShoppingCartPage
 from reservationPage import ReservationPage
+from confirmationPage import ConfirmationPage
 
 import pydoc
 
@@ -25,10 +26,10 @@ class MainWindow(QMainWindow):
         super().__init__()
         self.setWindowTitle("JeSuite Hotel Reservation")
         self.resize(1000, 500)
-        #self.ssetStyleSheet("background-color: lightblue;")
+        #self.setStyleSheet("background-color: lightblue;")
         self.setStyleSheet("""
             MainWindow{
-                background-color: lightblue;
+                background-color: white;          
             }
         """)
 
@@ -41,13 +42,14 @@ class MainWindow(QMainWindow):
         room_selection = RoomSelectionPage(self.stack)
         shopping_cart = ShoppingCartPage(self.stack)
         reservation = ReservationPage(self.stack)
-    
+        confirmation_text = ConfirmationPage(self.stack)
 
         #Add pages to stacked widget
         self.stack.addWidget(home)
         self.stack.addWidget(room_selection)
         self.stack.addWidget(shopping_cart)
         self.stack.addWidget(reservation)
+        self.stack.addWidget(confirmation_text)
 
 
 

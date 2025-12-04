@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QWidget, QLabel, QLineEdit,QVBoxLayout, QPushButton, QHBoxLayout
+from PyQt5.QtWidgets import QWidget, QLabel, QLineEdit, QVBoxLayout, QPushButton, QHBoxLayout
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtCore import Qt
 import pydoc
@@ -11,10 +11,10 @@ class TextInputField(QWidget):
         super().__init__()
         self.label_text = label_text
         self.placeholder = placeholder
-        self.init_ui()
+        self.initUI()
 
 
-    def init_ui(self):
+    def initUI(self):
         """ Initialize the UI components for the input fields creation of vertical layout containing:
           - Descriptive QLabel for field
             - QLineEdit for user input and placeholder text
@@ -43,10 +43,7 @@ class ReservationPage(QWidget):
         self.first_name_field = None
         self.last_name_field = None
 
-
         self.initUI()
-
-
 
 
     def initUI(self):
@@ -176,17 +173,24 @@ class ReservationPage(QWidget):
 
 
 
-
         """Create and configure the Confirm Reservation button."""
         self.confirm_button = QPushButton("Confirm Reservation")
-        self.confirm_button.setStyleSheet(
-            "font-size: 12px; padding: 10px; background-color: blue; color: white;"
-        )
+        self.confirm_button.self.setStyleSheet("""
+            QLabel {
+                color: black;
+            }
+            QPushButton {
+                background-color: #8c6d3d;
+            }
+            QComboBox {
+                background-color: #8c6d3d;
+            }
+        """)
         self.confirm_button.clicked.connect(self.confirm_reservation)
         layout.addWidget(self.confirm_button)
 
-
         self.setLayout(layout)
+
    
     def confirm_reservation(self):
         """Handle reservation confirmation logic"""
@@ -201,4 +205,8 @@ class ReservationPage(QWidget):
             "first_name": self.first_name_field.get_value(),
             "last_name": self.last_name_field.get_value()
         }
+    
+    def confirm_reservation(self):
+        self.stacked_widget.setCurrentIndex(4)
+        
 pydoc.writedoc("reservationPage")
