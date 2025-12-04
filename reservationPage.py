@@ -1,6 +1,7 @@
 from PyQt5.QtWidgets import QWidget, QLabel, QLineEdit, QVBoxLayout, QPushButton, QHBoxLayout
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtCore import Qt
+from customer import Customer
 import pydoc
 
 """"" Creates class TextInputField that encapsulates a labeled text input field. """
@@ -194,10 +195,24 @@ class ReservationPage(QWidget):
    
     def confirm_reservation(self):
         """Handle reservation confirmation logic"""
-   
-        print("First Name:", self.first_name_field.get_value())
-        print("Last Name:", self.last_name_field.get_value())
-       
+        customer = Customer(
+            first_name=self.first_name_field.get_value(),
+            last_name=self.last_name_field.get_value(),
+            phone=self.phone_field.get_value(),
+            email=self.email_field.get_value(),
+            address=self.addressline_field.get_value(),
+            city=self.city_field.get_value(),
+            state=self.state.get_value(),
+            zipcode=self.zipcode.get_value(),
+            card_num=self.card_num.get_value(),
+            expir_month=self.expir_month.get_value(),
+            expir_year=self.expir_year.get_value(),
+            cvv=self.CVV.get_value(),
+            billing_zip=self.billing_zip.get_value()
+        )
+
+    # ✅ Customer.__init__ already calls save_to_csv()
+        print(f"Reservation confirmed and saved for: {customer.first_name} {customer.last_name}")
    
     def get_guestinfo(self):
         """Return guest information as a dictionary"""

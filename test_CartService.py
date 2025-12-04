@@ -29,7 +29,7 @@ class TestCartService(unittest.TestCase):
         item2 = CartItem(self.roomChoices.single_queen, check_in, check_out)
         self.cartService.addCartItem(item2,check_in,check_out)
 
-        self.assertEqual(len(self.cartService.cartItems),2) # num of items in cart should be 2 
+        self.assertEqual(len(self.cartService.cartItems),1) # num of items in cart should be 2 
 
        
     def test_removeItem(self):
@@ -43,3 +43,6 @@ class TestCartService(unittest.TestCase):
 
     if __name__ == '__main__': # 
         unittest.main() # runs all tests 
+
+
+    

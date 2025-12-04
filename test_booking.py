@@ -2,14 +2,19 @@ import unittest
 from datetime import datetime
 from cart_Service import CartService, CartItem
 from room import Room
+from booking import Booking
+from roomSearch import roomSearch
 
 class TestBookingItems(unittest.TestCase):
 
     def setUp(self):
         # Create a CartService and dummy rooms for testing
         self.cart_service = CartService()
-        self.room1 = Room("King", 1, 170.0, 101, True)
-        self.room2 = Room("Queen", 1, 120.0, 102, True)
+        self.bookingChoices = Booking()
+        self.roomChoices = roomSearch()
+        self.roomStuff = Room()
+        self.room1 = self.roomChoices.single_king
+        self.room2 = self.roomChoices.single_queen
 
 
         self.cart_service.bookingItems = self.bookingItems.__get__(self.cart_service)
@@ -78,6 +83,8 @@ class TestBookingItems(unittest.TestCase):
         self.assertEqual(len(result), 2)
         self.assertEqual(result[0]["room_type"], "King")
         self.assertEqual(result[1]["room_type"], "Queen")
+
+
 
 if __name__ == "__main__":
     unittest.main()
