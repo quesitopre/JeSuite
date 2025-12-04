@@ -19,18 +19,17 @@ class TestCartService(unittest.TestCase):
         check_out = datetime.strptime("12/07/2025", "%m/%d/%Y")
         item1 = CartItem(self.roomChoices.single_king, check_in, check_out) #create a new cart item
         self.cartService.addCartItem(item1,check_in, check_out)
-
-        self.assertEqual(len(self.cartService.cartItems),1)
-
+        print("Observed:")
+        self.assertEqual(len(self.cartService.cartItems),1)# num of items in cart should be 2 
+        print("Expected: ")
 
     def test_addItem2(self):
         check_in = datetime.strptime("12/03/2025", "%m/%d/%Y")
         check_out = datetime.strptime("12/05/2025", "%m/%d/%Y")
         item2 = CartItem(self.roomChoices.single_queen, check_in, check_out)
-        
         self.cartService.addCartItem(item2,check_in,check_out)
 
-        self.assertEqual(len(self.cartService.cartItems),1)
+        self.assertEqual(len(self.cartService.cartItems),2) # num of items in cart should be 2 
 
        
     def test_removeItem(self):
@@ -38,9 +37,9 @@ class TestCartService(unittest.TestCase):
         check_out = datetime.strptime("12/07/2025", "%m/%d/%Y")
         item1 = CartItem(self.roomChoices.single_king, check_in, check_out) #create a new cart item
         self.cartService.addCartItem(item1,check_in,check_out)
-    
+        
         self.cartService.removeCartItem(0)
         self.assertEqual(len(self.cartService.cartItems),0)
 
-    if __name__ == '__main__':
-        unittest.main()
+    if __name__ == '__main__': # 
+        unittest.main() # runs all tests 
