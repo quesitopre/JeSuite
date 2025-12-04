@@ -3,7 +3,6 @@ from dataclasses import dataclass, field
 from typing import List, Optional
 from homepage import CalendarPopUp, HomePage
 from room import Room
-from reservationPage import TextInputField, ReservationPage
 import os
 import csv
 
@@ -30,6 +29,8 @@ class Customer:
         self.expir_year = expir_year
         self.cvv = cvv
         self.billing_zip = billing_zip
+        print(f"Customer object created: {first_name} {last_name}")
+        self.save_to_csv()
 
     def get_contact_info(self) -> dict:
         #Return safe customer contact info
@@ -52,24 +53,18 @@ class Customer:
         }
     
 
-    def save_to_csv(self, filename: str = "customers.csv"):
-        """
-        Save customer information into a CSV file.
-        """
+    def save_to_csv(self, filename="customers.csv"):
         file_exists = os.path.isfile(filename)
+        print("save_to_csv() called")
 
         with open(filename, mode="a", newline="", encoding="utf-8") as file:
             writer = csv.writer(file)
-
-            # Write header if file is new
             if not file_exists:
                 writer.writerow([
-                    "First Name", "Last Name", "Phone", "Email",
-                    "Address", "City", "State", "Zipcode",
-                    "Card Number", "Expir Month", "Expir Year",
-                    "CVV", "Billing Zip"
+                    "First Name","Last Name","Phone","Email",
+                    "Address","City","State","Zipcode",
+                    "Card Number","Expir Month","Expir Year","CVV","Billing Zip"
                 ])
-            # Write customer data
             writer.writerow([
                 self.first_name, self.last_name, self.phone, self.email,
                 self.address, self.city, self.state, self.zipcode,
@@ -77,22 +72,4 @@ class Customer:
                 self.cvv, self.billing_zip
             ])
 
-def confirm_reservation(self):
-    #Handle reservation confirmation logic
-
-    customer = Customer(
-        first_name=self.first_name_field.get_value(),
-        last_name=self.last_name_field.get_value(),
-        phone=self.phone_field.get_value(),
-        email=self.email_field.get_value(),
-        address=self.addressline_field.get_value(),
-        city=self.city_field.get_value(),
-        state=self.state.get_value(),
-        zipcode=self.zipcode.get_value(),
-        card_num=self.card_num.get_value(),
-        expir_month=self.expir_month.get_value(),
-        expir_year=self.expir_year.get_value(),
-        cvv=self.CVV.get_value(),
-        billing_zip=self.billing_zip.get_value()
-    )
-    customer.save_to_csv()
+    
