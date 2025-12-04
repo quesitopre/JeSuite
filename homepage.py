@@ -247,7 +247,6 @@ class HomePage(QWidget):
             )
         
     def go_to_room_selection(self):
-<<<<<<< HEAD
         '''
         Switches the stacked widget to the room selection page.
 
@@ -260,6 +259,3 @@ class HomePage(QWidget):
         self.stacked_widget.setCurrentIndex(1)
 
 pydoc.writedoc("homepage")
-=======
-        self.stacked_widget.setCurrentIndex(1)
->>>>>>> maythu/frontend
