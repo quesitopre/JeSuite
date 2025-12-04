@@ -37,9 +37,9 @@ class CartItem:
                 f"nights={self.nights}, "
                 f"price_per_night={self.room.price_per_night})")
 
-        def getItemTotal(self)-> float:
-            """ Calculate the total price for this cart item."""
-            return self.room.price_per_night * self.nights
+    def getItemTotal(self)-> float:
+        """ Calculate the total price for this cart item."""
+        return self.room.price_per_night * self.nights
 
 class CartService:
     """''Class to manage the shopping cart functionality for hotel room bookings.
