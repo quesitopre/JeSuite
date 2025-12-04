@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QWidget, QLabel, QHBoxLayout, QVBoxLayout
+from PyQt5.QtWidgets import QWidget, QLabel, QHBoxLayout, QVBoxLayout, QPushButton
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtCore import Qt
 
@@ -18,11 +18,9 @@ class RoomAmenities(QWidget):
                 padding: 10px;
             }
             QLabel {
-                padding-top: -20;
+                font-size: 20px;
                 color: black;    
             }
-            
-            
         """)
 
         main = QVBoxLayout()
