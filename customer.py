@@ -2,7 +2,7 @@
 from dataclasses import dataclass, field
 from typing import List, Optional
 from homepage import CalendarPopUp, HomePage
-from backend.room import Room
+from room import Room
 from reservationPage import TextInputField, ReservationPage
 import os
 import csv
@@ -50,6 +50,33 @@ class Customer:
             "cvv": self.cvv,
             "billing_zip": self.billing_zip
         }
+    
+
+    def save_to_csv(self, filename: str = "customers.csv"):
+        """
+        Save customer information into a CSV file.
+        """
+        file_exists = os.path.isfile(filename)
+
+        with open(filename, mode="a", newline="", encoding="utf-8") as file:
+            writer = csv.writer(file)
+
+            # Write header if file is new
+            if not file_exists:
+                writer.writerow([
+                    "First Name", "Last Name", "Phone", "Email",
+                    "Address", "City", "State", "Zipcode",
+                    "Card Number", "Expir Month", "Expir Year",
+                    "CVV", "Billing Zip"
+                ])
+            # Write customer data
+            writer.writerow([
+                self.first_name, self.last_name, self.phone, self.email,
+                self.address, self.city, self.state, self.zipcode,
+                self.card_num, self.expir_month, self.expir_year,
+                self.cvv, self.billing_zip
+            ])
+
 def confirm_reservation(self):
     #Handle reservation confirmation logic
 
@@ -68,5 +95,4 @@ def confirm_reservation(self):
         cvv=self.CVV.get_value(),
         billing_zip=self.billing_zip.get_value()
     )
-
-    
+    customer.save_to_csv()
