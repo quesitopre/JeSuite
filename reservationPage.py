@@ -24,6 +24,19 @@ class TextInputField(QWidget):
         self.label = QLabel(self.label_text)
         self.input = QLineEdit()
         self.input.setPlaceholderText(self.placeholder)
+        self.input.setStyleSheet("""
+            QLineEdit {
+                background-color: white;
+                color: black;
+                border: 1px solid #c4c4c4;
+                border-radius: 6px;
+                padding: 6px;
+                font-size: 14px;
+            }
+            QLineEdit::placeholder {
+                color: #666666;
+            }
+        """)
         layout.addWidget(self.label)
         layout.addWidget(self.input)
         self.setLayout(layout)
@@ -60,13 +73,13 @@ class ReservationPage(QWidget):
 
         self.header_label = QLabel("Complete Your Reservation")
         self.header_label.setAlignment(Qt.AlignCenter)
-        self.setStyleSheet("font-size: 20px; font-weight: bold; color: white;")
+        self.setStyleSheet("font-size: 20px; font-weight: bold; color: black;")
         layout.addWidget(self.header_label)
        
         '''Create Subheader: Guest Information'''
         self.subheader = QLabel ("Guest Information")
         self.subheader.setAlignment (Qt.AlignLeft)
-        self.setStyleSheet("font-size: 15px; color: white;")
+        self.setStyleSheet("font-size: 15px; color: black;")
         layout.addWidget(self.subheader)
        
 
@@ -97,7 +110,7 @@ class ReservationPage(QWidget):
         '''Create Address Subheader: Address'''
         self.address_header = QLabel ("Address")
         self.address_header.setAlignment (Qt.AlignLeft)
-        self.setStyleSheet("font-size: 15px; color: white;")
+        self.setStyleSheet("font-size: 15px; color: black;")
         layout.addWidget(self.address_header)
 
         """Create a horizontal layout containing input fields for Zipcode and State. 
@@ -127,7 +140,7 @@ class ReservationPage(QWidget):
         '''Create Credit Info Subheader'''
         self.credit_subheader = QLabel ("Credit/Debit Information")
         self.credit_subheader.setAlignment (Qt.AlignLeft)
-        self.setStyleSheet("font-size: 15px; color: white;")
+        self.setStyleSheet("font-size: 15px; color: black;")
         layout.addWidget(self.credit_subheader)
 
 
@@ -177,11 +190,9 @@ class ReservationPage(QWidget):
         """Create and configure the Confirm Reservation button."""
         self.confirm_button = QPushButton("Confirm Reservation")
         self.confirm_button.setStyleSheet("""
-            QLabel {
-                color: white;
-            }
             QPushButton {
                 background-color: #8c6d3d;
+                color: white;
             }
             QComboBox {
                 background-color: #8c6d3d;
