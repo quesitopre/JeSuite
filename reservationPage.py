@@ -60,13 +60,13 @@ class ReservationPage(QWidget):
 
         self.header_label = QLabel("Complete Your Reservation")
         self.header_label.setAlignment(Qt.AlignCenter)
-        self.setStyleSheet("font-size: 20px; font-weight: bold; color: black;")
+        self.setStyleSheet("font-size: 20px; font-weight: bold; color: white;")
         layout.addWidget(self.header_label)
        
         '''Create Subheader: Guest Information'''
         self.subheader = QLabel ("Guest Information")
         self.subheader.setAlignment (Qt.AlignLeft)
-        self.setStyleSheet("font-size: 15px; color: black;")
+        self.setStyleSheet("font-size: 15px; color: white;")
         layout.addWidget(self.subheader)
        
 
@@ -97,7 +97,7 @@ class ReservationPage(QWidget):
         '''Create Address Subheader: Address'''
         self.address_header = QLabel ("Address")
         self.address_header.setAlignment (Qt.AlignLeft)
-        self.setStyleSheet("font-size: 15px; color: black;")
+        self.setStyleSheet("font-size: 15px; color: white;")
         layout.addWidget(self.address_header)
 
         """Create a horizontal layout containing input fields for Zipcode and State. 
@@ -127,7 +127,7 @@ class ReservationPage(QWidget):
         '''Create Credit Info Subheader'''
         self.credit_subheader = QLabel ("Credit/Debit Information")
         self.credit_subheader.setAlignment (Qt.AlignLeft)
-        self.setStyleSheet("font-size: 15px; color: black;")
+        self.setStyleSheet("font-size: 15px; color: white;")
         layout.addWidget(self.credit_subheader)
 
 
@@ -176,9 +176,9 @@ class ReservationPage(QWidget):
 
         """Create and configure the Confirm Reservation button."""
         self.confirm_button = QPushButton("Confirm Reservation")
-        self.confirm_button.self.setStyleSheet("""
+        self.confirm_button.setStyleSheet("""
             QLabel {
-                color: black;
+                color: white;
             }
             QPushButton {
                 background-color: #8c6d3d;
