@@ -74,6 +74,29 @@ class HomePage(QWidget):
         super().__init__()
         self.stacked_widget = stacked_widget
 
+        self.setStyleSheet("""
+            QLabel {
+                color: black;          
+            }
+            QPushButton {
+                background-color: #8c6d3d;
+            }
+            QComboBox {
+                background-color: #8c6d3d;
+            }
+            QDateEdit{
+                background-color: #a07e45;
+                color: white;
+            }          
+            QCalendarWidget QWidget {
+                background-color: white;  
+                color: #a07e45;       
+            }
+            QCalendarWidget QAbstractItemView {
+                selection-background-color: #f2c94c;
+            }  
+        """)
+
         main_layout = QVBoxLayout()
         header = self.create_header()
         filters = self.create_categories()
@@ -106,7 +129,13 @@ class HomePage(QWidget):
         '''
         header_layout = QHBoxLayout()
 
-        company_logo = QLabel("Hotel logo")
+        # add hotel logo 
+        self.logo = QLabel(self)
+        self.logo.setAlignment(Qt.AlignCenter)
+        pixmap = QPixmap("Assets/logo.png")
+        self.logo.setPixmap(pixmap.scaled(100, 100)) 
+        header_layout.addWidget(self.logo)
+        #company_logo = QLabel("Hotel logo")
         home_text = QLabel("Home")
         about_text = QLabel("About Us")
         services_text = QLabel("Services")
@@ -115,7 +144,7 @@ class HomePage(QWidget):
         sign_in_button = QPushButton("Sign In")
         sign_up_button = QPushButton("Sign Up")
 
-        header_layout.addWidget(company_logo)
+        #header_layout.addWidget(company_logo)
         header_layout.addWidget(home_text)
         header_layout.addWidget(about_text)
         header_layout.addWidget(services_text)

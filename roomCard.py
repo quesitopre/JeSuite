@@ -103,14 +103,14 @@ class RoomCard(QWidget):
 
         # book button 
         self.book_button = QPushButton("Book Now!")
-        self.book_button.clicked.connect(self.go_to_reservation_page)
+        self.book_button.clicked.connect(self.go_to_shopping_cart)
         info_layout.addWidget(self.book_button)        
 
         layout.addLayout(info_layout)
 
         self.setLayout(layout)
 
-    def go_to_reservation_page(self):
+    def go_to_shopping_cart(self):
         '''
         Navigates to the reservation page by changing the stacked widget index.
 

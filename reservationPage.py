@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QWidget, QLabel, QLineEdit,QVBoxLayout, QPushButton, QHBoxLayout
+from PyQt5.QtWidgets import QWidget, QLabel, QLineEdit, QVBoxLayout, QPushButton, QHBoxLayout
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtCore import Qt
 from customer import Customer
@@ -12,10 +12,10 @@ class TextInputField(QWidget):
         super().__init__()
         self.label_text = label_text
         self.placeholder = placeholder
-        self.init_ui()
+        self.initUI()
 
 
-    def init_ui(self):
+    def initUI(self):
         """ Initialize the UI components for the input fields creation of vertical layout containing:
           - Descriptive QLabel for field
             - QLineEdit for user input and placeholder text
@@ -24,6 +24,19 @@ class TextInputField(QWidget):
         self.label = QLabel(self.label_text)
         self.input = QLineEdit()
         self.input.setPlaceholderText(self.placeholder)
+        self.input.setStyleSheet("""
+            QLineEdit {
+                background-color: white;
+                color: black;
+                border: 1px solid #c4c4c4;
+                border-radius: 6px;
+                padding: 6px;
+                font-size: 14px;
+            }
+            QLineEdit::placeholder {
+                color: #666666;
+            }
+        """)
         layout.addWidget(self.label)
         layout.addWidget(self.input)
         self.setLayout(layout)
@@ -44,10 +57,7 @@ class ReservationPage(QWidget):
         self.first_name_field = None
         self.last_name_field = None
 
-
         self.initUI()
-
-
 
 
     def initUI(self):
@@ -177,17 +187,22 @@ class ReservationPage(QWidget):
 
 
 
-
         """Create and configure the Confirm Reservation button."""
         self.confirm_button = QPushButton("Confirm Reservation")
-        self.confirm_button.setStyleSheet(
-            "font-size: 12px; padding: 10px; background-color: blue; color: white;"
-        )
+        self.confirm_button.setStyleSheet("""
+            QPushButton {
+                background-color: #8c6d3d;
+                color: white;
+            }
+            QComboBox {
+                background-color: #8c6d3d;
+            }
+        """)
         self.confirm_button.clicked.connect(self.confirm_reservation)
         layout.addWidget(self.confirm_button)
 
-
         self.setLayout(layout)
+
    
     def confirm_reservation(self):
         """Handle reservation confirmation logic"""
@@ -216,4 +231,8 @@ class ReservationPage(QWidget):
             "first_name": self.first_name_field.get_value(),
             "last_name": self.last_name_field.get_value()
         }
+    
+    def confirm_reservation(self):
+        self.stacked_widget.setCurrentIndex(4)
+        
 pydoc.writedoc("reservationPage")
