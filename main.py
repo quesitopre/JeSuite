@@ -25,14 +25,13 @@ class MainWindow(QMainWindow):
         '''
         super().__init__()
         self.setWindowTitle("JeSuite Hotel Reservation")
-        self.resize(1000, 800)
+        self.resize(600, 800)
         #self.setStyleSheet("background-color: lightblue;")
         self.setStyleSheet("""
             MainWindow{
                 background-color: white;          
             }
         """)
-
 
         self.stack = QStackedWidget()
         self.setCentralWidget(self.stack)

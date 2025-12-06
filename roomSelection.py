@@ -6,6 +6,7 @@ from PyQt5.QtCore import Qt
 from roomCard import RoomCard
 from roomAmenities import RoomAmenities
 #from homepage import HomePage
+from header import Header
 
 import pydoc
 
@@ -27,9 +28,21 @@ class RoomSelectionPage(QWidget):
         '''
         super().__init__()
         self.stacked_widget = stacked_widget
-
+        self.setObjectName("RoomSelection")
+        self.setStyleSheet("""
+            QLabel {
+                color: black;
+                font-size: 15px;
+            }
+            #RoomSelection {
+                border: 1px solid #000000;
+                border-radius: 12px;
+            } 
+        """)
         layout = QVBoxLayout()
-
+        
+        header = Header(False)
+        layout.addWidget(header)
         amenities = RoomAmenities()
         layout.addWidget(amenities)
 

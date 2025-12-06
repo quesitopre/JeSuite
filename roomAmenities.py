@@ -11,14 +11,12 @@ class RoomAmenities(QWidget):
     def initUI(self):
         self.setObjectName("RoomAmenities")
         self.setStyleSheet("""
-            RoomAmenities {
-                background-color: white;
+            #RoomAmenities {
                 border: 1px solid #000000;
                 border-radius: 12px;
-                padding: 10px;
             }
             QLabel {
-                font-size: 20px;
+                font-size: 15px;
                 color: black;    
             }
         """)

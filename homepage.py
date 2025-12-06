@@ -84,6 +84,17 @@ class HomePage(QWidget):
             QComboBox {
                 background-color: #8c6d3d;
             }
+            QDateEdit{
+                background-color: #a07e45;
+                color: white;
+            }          
+            QCalendarWidget QWidget {
+                background-color: white;  
+                color: #a07e45;       
+            }
+            QCalendarWidget QAbstractItemView {
+                selection-background-color: #f2c94c;
+            }  
         """)
 
         main_layout = QVBoxLayout()
