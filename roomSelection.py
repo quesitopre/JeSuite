@@ -2,47 +2,27 @@ from PyQt5.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout
 from roomCard import RoomCard
 from header import Header
 from roomAmenities import RoomAmenities
+#from homepage import HomePage
+from header import Header
+
+import pydoc
 
 class RoomSelectionPage(QWidget):
     """
-    Displays all rooms. Connects RoomCard signals to ShoppingCartPage.
+    Displays all rooms. all available hotel rooms in a horizontal layout, allowing 
+    users to browse and select a room. Connects RoomCard signals to ShoppingCartPage.
     """
     def __init__(self, stacked_widget, cart_page):
         super().__init__()
         self.stacked_widget = stacked_widget
-<<<<<<< HEAD
-        self.setObjectName("RoomSelection")
-        self.setStyleSheet("""
-            QLabel {
-                color: black;
-                font-size: 15px;
-            }
-            #RoomSelection {
-                border: 1px solid #000000;
-                border-radius: 12px;
-            } 
-            QPushButton {
-                background-color: #8c6d3d;
-            }
-        """)
-        layout = QVBoxLayout()
-        
-        #header = Header(False)
-        #layout.addWidget(header)
-        #amenities = RoomAmenities()
-        #layout.addWidget(amenities)
-
-        layout.addWidget(Header(False))
-        layout.addWidget(RoomAmenities())
-=======
         self.cart_page = cart_page  # reference to ShoppingCartPage
 
         layout = QVBoxLayout()
->>>>>>> ee9dee70807fa8fac2ebe5f12f7daeaec42bb43e
 
         # Header
         layout.addWidget(Header(False))
         layout.addWidget(RoomAmenities())
+
 
         # Room cards layout
         grid = QHBoxLayout()
@@ -60,4 +40,11 @@ class RoomSelectionPage(QWidget):
             grid.addWidget(card)
 
         layout.addLayout(grid)
+
         self.setLayout(layout)
+
+    #def go_to_reservation_form(self):
+     #   self.stacked_widget.setCurrentIndex(2)
+
+pydoc.writedoc("roomSelection")
+
