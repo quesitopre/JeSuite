@@ -224,7 +224,8 @@ class ReservationPage(QWidget):
 
     # ✅ Customer.__init__ already calls save_to_csv()
         print(f"Reservation confirmed and saved for: {customer.first_name} {customer.last_name}")
-   
+        self.stacked_widget.setCurrentIndex(4)
+
     def get_guestinfo(self):
         """Return guest information as a dictionary"""
         return {
@@ -232,7 +233,5 @@ class ReservationPage(QWidget):
             "last_name": self.last_name_field.get_value()
         }
     
-    def confirm_reservations(self):
-        self.stacked_widget.setCurrentIndex(4)
         
 pydoc.writedoc("reservationPage")
