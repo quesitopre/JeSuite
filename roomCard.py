@@ -1,6 +1,6 @@
 from PyQt5.QtWidgets import QWidget, QLabel, QVBoxLayout, QPushButton
 from PyQt5.QtGui import QPixmap
-from PyQt5.QtCore import Qt
+from PyQt5.QtCore import Qt,pyqtSignal
 
 import pydoc
 
@@ -9,6 +9,9 @@ class RoomCard(QWidget):
     Represents an individual hotel room card, showing the room image, 
     name, capacity, price, and a 'Book Now!' button.
     '''
+
+    added_to_cart = pyqtSignal(str,float) #signal emitted when room is added to cart
+
     def __init__(self, image_path, suite_name, capacity, price, stacked_widget = None):
         '''
         Initializes the RoomCard widget with image, name, capacity, price, 
@@ -24,12 +27,16 @@ class RoomCard(QWidget):
         Returns:
             None
         '''
+       
+
+
+
         super().__init__()
 
         self.image = image_path
         self.name = suite_name
         self.capacity = capacity
-        self.price = price
+        self.price = float (price.replace('$',''))#convert price to float
         self.stacked_widget = stacked_widget
 
         self.initUI()
@@ -97,7 +104,7 @@ class RoomCard(QWidget):
         info_layout.addWidget(cap_label)
 
         # price
-        price_label = QLabel(self.price)
+        price_label = QLabel(f"${self.price:.2f}")
         price_label.setAlignment(Qt.AlignCenter)
         info_layout.addWidget(price_label)
 
@@ -120,6 +127,8 @@ class RoomCard(QWidget):
         Returns:
             None
         '''
+        #emit signal w/ room info
+        self.added_to_cart.emit(self.name,self.price)  #emit signal when room is added to cart
         self.stacked_widget.setCurrentIndex(2)
 
 pydoc.writedoc("roomCard")
