@@ -38,13 +38,19 @@ class RoomSelectionPage(QWidget):
                 border: 1px solid #000000;
                 border-radius: 12px;
             } 
+            QPushButton {
+                background-color: #8c6d3d;
+            }
         """)
         layout = QVBoxLayout()
         
-        header = Header(False)
-        layout.addWidget(header)
-        amenities = RoomAmenities()
-        layout.addWidget(amenities)
+        #header = Header(False)
+        #layout.addWidget(header)
+        #amenities = RoomAmenities()
+        #layout.addWidget(amenities)
+
+        layout.addWidget(Header(False))
+        layout.addWidget(RoomAmenities())
 
         grid = QHBoxLayout()
         
