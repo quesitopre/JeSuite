@@ -232,5 +232,7 @@ class ReservationPage(QWidget):
             "last_name": self.last_name_field.get_value()
         }
     
-    
+    def confirm_reservations(self):
+        self.stacked_widget.setCurrentIndex(4)
+        
 pydoc.writedoc("reservationPage")
