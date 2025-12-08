@@ -38,8 +38,9 @@ class MainWindow(QMainWindow):
 
         #Initialize pages
         home = HomePage(self.stack)
-        room_selection = RoomSelectionPage(self.stack)
         shopping_cart = ShoppingCartPage(self.stack)
+        room_selection = RoomSelectionPage(self.stack,shopping_cart)
+       #shopping_cart = ShoppingCartPage(self.stack)
         reservation = ReservationPage(self.stack)
         confirmation_text = ConfirmationPage(self.stack)
 

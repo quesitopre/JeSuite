@@ -5,6 +5,7 @@ from PyQt5.QtWidgets import (
     QVBoxLayout, QLabel, QCalendarWidget
 ) 
 from PyQt5.QtGui import QPixmap
+from header import Header
 
 import pydoc
 
@@ -116,7 +117,7 @@ class HomePage(QWidget):
 
         self.calendar_popUp = None
 
-
+    
     def create_header(self):
         '''
         Creates the header layout with navigation labels and sign-in/up buttons.
