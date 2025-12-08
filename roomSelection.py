@@ -17,12 +17,31 @@ class RoomSelectionPage(QWidget):
         self.stacked_widget = stacked_widget
         self.cart_page = cart_page  # reference to ShoppingCartPage
 
+        self.setObjectName("RoomSelection")
+        self.setStyleSheet("""
+            QLabel {
+                color: black;
+                font-size: 15px;
+            }
+            #RoomSelection {
+                border: 1px solid #000000;
+                border-radius: 12px;
+            } 
+            QPushButton {
+                background-color: #8c6d3d;
+            }
+        """)
+
         layout = QVBoxLayout()
 
-        # Header
+        #header = Header(False)
+        #layout.addWidget(header)
+        #amenities = RoomAmenities()
+        #layout.addWidget(amenities)
+
+        #header
         layout.addWidget(Header(False))
         layout.addWidget(RoomAmenities())
-
 
         # Room cards layout
         grid = QHBoxLayout()

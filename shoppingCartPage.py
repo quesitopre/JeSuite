@@ -23,6 +23,20 @@ class ShoppingCartPage(QWidget):
 
     def initUI(self):
         layout = QVBoxLayout()
+        self.setStyleSheet("""
+            QWidget {
+            background-color: white;
+            }
+            QLabel {
+                color: black;
+            }
+            QPushButton {
+                background-color: #8c6d3d;
+            }
+            QComboBox {
+                background-color: #8c6d3d;
+            }
+        """)
         self.setLayout(layout)
 
         # Title
