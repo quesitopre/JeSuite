@@ -25,7 +25,7 @@ class MainWindow(QMainWindow):
         '''
         super().__init__()
         self.setWindowTitle("JeSuite Hotel Reservation")
-        self.resize(600, 800)
+        self.resize(600, 600)
         #self.setStyleSheet("background-color: lightblue;")
         self.setStyleSheet("""
             MainWindow{
