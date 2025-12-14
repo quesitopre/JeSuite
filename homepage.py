@@ -99,6 +99,8 @@ class HomePage(QWidget):
         """)
 
         main_layout = QVBoxLayout()
+        main_layout.setContentsMargins(20, 20, 20, 20)
+        main_layout.setSpacing(10)
         header = self.create_header()
         filters = self.create_categories()
        
