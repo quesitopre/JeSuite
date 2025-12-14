@@ -26,6 +26,9 @@ class MainWindow(QMainWindow):
         super().__init__()
         self.setWindowTitle("JeSuite Hotel Reservation")
         self.resize(1292, 924)
+        self.setMinimumSize(800, 600)
+        self.setMaximumSize(1920, 1080)
+        self.statusBar().setSizeGripEnabled(True) # make window resizable
         #self.setStyleSheet("background-color: lightblue;")
         self.setStyleSheet("""
             MainWindow{

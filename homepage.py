@@ -2,7 +2,7 @@ import sys
 from PyQt5.QtCore import QSize, Qt
 from PyQt5.QtWidgets import (
     QApplication, QMainWindow, QPushButton, QWidget, QHBoxLayout, QComboBox, 
-    QVBoxLayout, QLabel, QCalendarWidget
+    QVBoxLayout, QLabel, QCalendarWidget, QSizePolicy
 ) 
 from PyQt5.QtGui import QPixmap
 from header import Header
@@ -110,14 +110,16 @@ class HomePage(QWidget):
         self.label = QLabel(self)
         self.label.setAlignment(Qt.AlignCenter)
         pixmap = QPixmap("Assets/landingpage_image.jpeg")
-        self.label.setPixmap(pixmap.scaled(1000, 500)) 
+        self.label.setPixmap(pixmap.scaled(1000, 300)) 
 
     
         main_layout.addWidget(self.label)
         main_layout.addLayout(filters)
+        main_layout.addStretch() 
         self.setLayout(main_layout)
 
         self.calendar_popUp = None
+        self.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 
     
     def create_header(self):
