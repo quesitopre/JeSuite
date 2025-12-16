@@ -924,7 +924,7 @@ Data descriptors inherited from <a href="PyQt5.sip.html#simplewrapper">sip.simpl
 <font color="#000000" face="helvetica, arial"><a name="HomePage">class <strong>HomePage</strong></a>(<a href="PyQt5.QtWidgets.html#QWidget">PyQt5.QtWidgets.QWidget</a>)</font></td></tr>
     
 <tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
-<td colspan=2><tt><a href="#HomePage">HomePage</a>(stacked_widget)<br>
+<td colspan=2><tt><a href="#HomePage">HomePage</a>(stacked_widget,&nbsp;booking_manager=None)<br>
 &nbsp;<br>
 The&nbsp;landing&nbsp;page&nbsp;of&nbsp;the&nbsp;hotel&nbsp;reservation&nbsp;system.&nbsp;<br>
 Displays&nbsp;header,&nbsp;filters,&nbsp;background&nbsp;image,&nbsp;and&nbsp;search&nbsp;functionality.<br>&nbsp;</tt></td></tr>
@@ -940,7 +940,7 @@ Displays&nbsp;header,&nbsp;filters,&nbsp;background&nbsp;image,&nbsp;and&nbsp;se
 </dl>
 <hr>
 Methods defined here:<br>
-<dl><dt><a name="HomePage-__init__"><strong>__init__</strong></a>(self, stacked_widget)</dt><dd><tt>Initializes&nbsp;the&nbsp;<a href="#HomePage">HomePage</a>&nbsp;widget&nbsp;with&nbsp;header,&nbsp;filters,&nbsp;and&nbsp;background.<br>
+<dl><dt><a name="HomePage-__init__"><strong>__init__</strong></a>(self, stacked_widget, booking_manager=None)</dt><dd><tt>Initializes&nbsp;the&nbsp;<a href="#HomePage">HomePage</a>&nbsp;widget&nbsp;with&nbsp;header,&nbsp;filters,&nbsp;and&nbsp;background.<br>
 &nbsp;<br>
 Params:<br>
 &nbsp;&nbsp;&nbsp;&nbsp;stacked_widget:&nbsp;QStackedWidget,&nbsp;used&nbsp;for&nbsp;navigation&nbsp;between&nbsp;pages.<br>
@@ -965,13 +965,9 @@ Params:<br>
 Returns:<br>
 &nbsp;&nbsp;&nbsp;&nbsp;QHBoxLayout&nbsp;containing&nbsp;the&nbsp;header&nbsp;widgets.</tt></dd></dl>
 
-<dl><dt><a name="HomePage-go_to_room_selection"><strong>go_to_room_selection</strong></a>(self)</dt><dd><tt>Switches&nbsp;the&nbsp;stacked&nbsp;widget&nbsp;to&nbsp;the&nbsp;room&nbsp;selection&nbsp;page.<br>
-&nbsp;<br>
-Params:<br>
-&nbsp;&nbsp;&nbsp;&nbsp;None<br>
-&nbsp;<br>
-Returns:<br>
-&nbsp;&nbsp;&nbsp;&nbsp;None</tt></dd></dl>
+<dl><dt><a name="HomePage-go_to_room_selection"><strong>go_to_room_selection</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="HomePage-open_login_dialog"><strong>open_login_dialog</strong></a>(self)</dt><dd><tt>Opens&nbsp;the&nbsp;login&nbsp;dialog&nbsp;when&nbsp;sign-in&nbsp;button&nbsp;is&nbsp;clicked.</tt></dd></dl>
 
 <dl><dt><a name="HomePage-set_selected_dates"><strong>set_selected_dates</strong></a>(self, start_date, end_date)</dt><dd><tt>Updates&nbsp;the&nbsp;date&nbsp;button&nbsp;text&nbsp;with&nbsp;selected&nbsp;start&nbsp;and&nbsp;end&nbsp;dates.<br>
 &nbsp;<br>

@@ -7,6 +7,7 @@ from PyQt5.QtWidgets import (
 from PyQt5.QtGui import QPixmap
 from header import Header
 
+
 import pydoc
 
 #calendar popup class
@@ -62,7 +63,7 @@ class HomePage(QWidget):
     The landing page of the hotel reservation system. 
     Displays header, filters, background image, and search functionality.
     '''
-    def __init__(self, stacked_widget):
+    def __init__(self, stacked_widget, booking_manager = None):
         '''
         Initializes the HomePage widget with header, filters, and background.
 
@@ -74,6 +75,7 @@ class HomePage(QWidget):
         '''
         super().__init__()
         self.stacked_widget = stacked_widget
+        self.booking_manager = booking_manager #booking manager reference
 
         self.setStyleSheet("""
             QLabel {
@@ -148,6 +150,8 @@ class HomePage(QWidget):
         contact_text = QLabel("Contact Us")
         sign_in_button = QPushButton("Sign In")
         sign_up_button = QPushButton("Sign Up")
+        sign_in_button.clicked.connect(self.open_login_dialog)
+        
 
         #header_layout.addWidget(company_logo)
         header_layout.addWidget(home_text)
@@ -186,19 +190,19 @@ class HomePage(QWidget):
         location_label = QLabel("Location:")
         location_combo = QComboBox()
         location_combo.addItems(["Los Angeles, California", "Santa Monica, California", "Beverly Hill, California", "Malibu, California"])
-        self.location_combo = location_combo.currentText()
+        self.location_combo = location_combo #widget reference
 
         #people
         people_label = QLabel("People:")
         people_combo = QComboBox()
         people_combo.addItems(["1 guest, 1 room", "2 guests, 1 room", "3 guests, 1 room", "4 guests, 1 room", "5 guests, 2 rooms", "6 guests, 2 rooms"])
-        self.people_combo = people_combo.currentText()
+        self.people_combo = people_combo #widget reference 
 
         #calendar
         calendar_label = QLabel("Calendar:")
         calendar_combo = QComboBox()
         calendar_combo.addItems(["Check-in and Check-out Dates"])
-        self.calendar_combo = calendar_combo.currentText()
+        self.calendar_combo = calendar_combo #widget reference
         
         #datebutton
         self.date_button = QPushButton("Select Dates")
@@ -263,15 +267,42 @@ class HomePage(QWidget):
             )
         
     def go_to_room_selection(self):
-        '''
-        Switches the stacked widget to the room selection page.
 
-        Params:
-            None
+        location = self.location_combo.currentText() # get selected location
+        people_text = self.people_combo.currentText() # get selected guest and room count
 
-        Returns:
-            None
-        '''
+        parts = people_text.split(',')
+        guests = parts[0].split()[0]  # extract number of guests
+        rooms = parts[1].split()[0]   # extract number of rooms
+
+        date_text = self.date_button.text() #get dates from button 
+
+        if date_text == "Selected Dates":
+            print("Please select check-in and check-out dates.")
+            return
+        
+        dates = date_text.split(' - ')
+        check_in = dates[0]
+        check_out = dates[1]
+
+        if self.booking_manager:
+            self.booking_manager.set_search_filters(
+                location = location,
+                check_in = check_in,
+                check_out = check_out,
+                guests = guests,
+                rooms = rooms
+            )
+            print(f"Captured: {location}, {guests} guests, {rooms} rooms, {check_in} to {check_out}")
+
         self.stacked_widget.setCurrentIndex(1)
+
+    def open_login_dialog(self):  
+        '''Opens the login dialog when sign-in button is clicked.'''
+        from login_DialogueBox import LoginDialogueBox #import login dialog class
+        self.login_dialog = LoginDialogueBox() #create login dialog instance
+        print("Login dialog instance created.") #dbug-remove later
+        self.login_dialog.show() #display the login dialog
+        print("Login dialog opened.") #dbug-remove later
 
 pydoc.writedoc("homepage")

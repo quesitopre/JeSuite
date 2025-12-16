@@ -6,6 +6,7 @@ from roomSelection import RoomSelectionPage
 from shoppingCartPage import ShoppingCartPage
 from reservationPage import ReservationPage
 from confirmationPage import ConfirmationPage
+from booking import Booking 
 
 import pydoc
 
@@ -39,8 +40,10 @@ class MainWindow(QMainWindow):
         self.stack = QStackedWidget()
         self.setCentralWidget(self.stack)
 
+        self.booking_manager = Booking() #booking manager reference
+
         #Initialize pages
-        home = HomePage(self.stack)
+        home = HomePage(self.stack,self.booking_manager)
         shopping_cart = ShoppingCartPage(self.stack)
         room_selection = RoomSelectionPage(self.stack,shopping_cart)
        #shopping_cart = ShoppingCartPage(self.stack)
@@ -53,8 +56,6 @@ class MainWindow(QMainWindow):
         self.stack.addWidget(shopping_cart)
         self.stack.addWidget(reservation)
         self.stack.addWidget(confirmation_text)
-
-
 
 if __name__ == "__main__":
     '''
@@ -70,6 +71,8 @@ if __name__ == "__main__":
     app = QApplication(sys.argv)
     window = MainWindow()
     window.show()
+    window.raise_() # bring window to front
+    window.activateWindow() # bring window to front
     sys.exit(app.exec_())
 
 pydoc.writedoc("main")
