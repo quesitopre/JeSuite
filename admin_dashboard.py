@@ -143,8 +143,8 @@ class AdminDashboard(QMainWindow):
                 font-size: 14px;
             }
         """)
-        self.customers_table.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeToContents)
-        
+        self.customers_table.horizontalHeader().setStretchLastSection(False)
+        self.customers_table.setHorizontalScrollBarPolicy(Qt.ScrollBarAsNeeded) 
         layout.addWidget(self.customers_table)
         widget.setLayout(layout)
         return widget
@@ -166,6 +166,8 @@ class AdminDashboard(QMainWindow):
                 font-weight: bold;
             }
         """)
+        self.bookings_table.horizontalHeader().setStretchLastSection(False)
+        self.bookings_table.setHorizontalScrollBarPolicy(Qt.ScrollBarAsNeeded)
         layout.addWidget(self.bookings_table)
         widget.setLayout(layout)
         return widget
@@ -200,5 +202,10 @@ class AdminDashboard(QMainWindow):
             for col_idx, header in enumerate(headers): #populate char by char 
                 item = QTableWidgetItem(str(row_data[header])) # convert to string
                 table.setItem(row_idx, col_idx, item) # set item in table
+        for col_idx in range(len(headers)):
+            table.horizontalHeader().setSectionResizeMode(col_idx, QHeaderView.Interactive)
+            table.setColumnWidth(col_idx, 120)
 
-        table.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+        #table.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeToContents)
+
+        table.setHorizontalScrollBarPolicy(Qt.ScrollBarAsNeeded)
