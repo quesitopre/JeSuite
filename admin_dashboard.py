@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import (QMainWindow, QWidget, QVBoxLayout, QLabel, QTableWidget, 
+from PyQt5.QtWidgets import (QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QLabel, QTableWidget, 
                              QTableWidgetItem, QTabWidget,QPushButton,QHeaderView,QFrame)
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QFont
@@ -59,9 +59,9 @@ class AdminDashboard(QMainWindow):
                 background-color: #27ae60;
                 color: white;
                 padding: 10px;
-            border-radius: 5px;
-                                     font-size: 14px;
-                                     font-weight: bold;
+                border-radius: 5px;
+                font-size: 14px;
+                font-weight: bold;
             }
             QPushButton:hover {
                 background-color: #229954;
@@ -76,18 +76,18 @@ class AdminDashboard(QMainWindow):
         frame = QFrame()
         frame.setStyleSheet("""
             QFrame{
-            "background-color: #f5f6fa;
+            background-color: #f5f6fa;
             border: 1px solid #bdc3c7;
         }
         """)
         
-        layout = QVBoxLayout()
+        layout = QHBoxLayout()
 
-        self.total_customers_box = self.create_stat_box("Total Customers", "0")
-        self.total_bookings_box = self.create_stat_box("Total Bookings", "0")
-        self.active_bookings_box = self.create_stat_box("Active Bookings", "0")
-        self.canceled_bookings_box = self.create_stat_box("Canceled Bookings", "0")
-        self.revenue_box = self.create_stat_box("Total Revenue", "$0.00")
+        self.total_customers_box = self.create_stat_box("Total Customers", "0","#3498db")
+        self.total_bookings_box = self.create_stat_box("Total Bookings", "0","#27ae60")
+        self.active_bookings_box = self.create_stat_box("Active Bookings", "0","#f39c12")
+        self.canceled_bookings_box = self.create_stat_box("Canceled Bookings", "0", "#e74c3c")
+        self.revenue_box = self.create_stat_box("Total Revenue", "$0.00", "#9b59b6")
 
         layout.addWidget(self.total_customers_box)
         layout.addWidget(self.total_bookings_box)
@@ -143,7 +143,8 @@ class AdminDashboard(QMainWindow):
                 font-size: 14px;
             }
         """)
-        layout = QVBoxLayout() # new layout
+        self.customers_table.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeToContents)
+        
         layout.addWidget(self.customers_table)
         widget.setLayout(layout)
         return widget
@@ -190,13 +191,14 @@ class AdminDashboard(QMainWindow):
             table.setColumnCount(0)
             return
         
-        header = list(data[0].keys())
-        table.setColumnCount(len(header))
-        table.setHorizontalHeaderLabels(header)
+        headers = list(data[0].keys())
+        table.setColumnCount(len(headers))
+        table.setHorizontalHeaderLabels(headers)
         table.setRowCount(len(data))
 
         for row_idx, row_data in enumerate(data):
-            for col_idx, header in enumerate(header):
-                item = QTableWidgetItem(str(row_data[header]))
-                table.setItem(row_idx, col_idx, item)
+            for col_idx, header in enumerate(headers): #populate char by char 
+                item = QTableWidgetItem(str(row_data[header])) # convert to string
+                table.setItem(row_idx, col_idx, item) # set item in table
+
         table.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)

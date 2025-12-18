@@ -46,8 +46,8 @@ class MainWindow(QMainWindow):
         home = HomePage(self.stack,self.booking_manager)
         shopping_cart = ShoppingCartPage(self.stack)
         room_selection = RoomSelectionPage(self.stack,shopping_cart)
-       #shopping_cart = ShoppingCartPage(self.stack)
-        reservation = ReservationPage(self.stack)
+        reservation = ReservationPage(self.stack, self.booking_manager,shopping_cart) 
+        shopping_cart = ShoppingCartPage(self.stack, self.booking_manager)
         confirmation_text = ConfirmationPage(self.stack)
 
         #Add pages to stacked widget

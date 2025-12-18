@@ -1,5 +1,4 @@
 import csv
-from fileinput import filename
 import os
 from datetime import datetime
 
@@ -20,6 +19,7 @@ class AdminBackend:
                 data = list(reader)
         except Exception as e:
             print(f"Error reading {filename}: {e}")
+        
         return data
 
     
@@ -41,19 +41,22 @@ class AdminBackend:
         active = 0
 
         for booking in bookings:
-            status = booking.get('status', '').lower()
+            status = booking.get('status', '').lower().strip()
             if status == 'canceled':
                 canceled += 1
             elif status == 'confirmed':
                 active += 1
             
             try:
-                price = float(booking.get('price', 0))
+                price_str = booking.get('total_amount', booking.get('room_price','0'))
+                price = float(price_str) if price_str else 0.0
                 if status == 'confirmed':
                     revenue += price
-            except (ValueError, TypeError):
+                    print(f"Adding ${price} to revenue from booking {booking.get('booking_id')}")  # Debug
+            except (ValueError, TypeError) as error:
+                print(f" Could not parse price: {error}")
                 pass
-
+        print(f"Total revenue calculated: ${revenue}")  # Debug
         return {
             'total_bookings': total_bookings,
             'total_customers': total_customers,

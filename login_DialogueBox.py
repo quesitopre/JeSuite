@@ -120,11 +120,11 @@ class LoginDialogueBox(QDialog):
             from admin_dashboard import AdminDashboard
             self.admin_dashboard = AdminDashboard()
             self.admin_dashboard.show()
-            prinbt("admin dashboard opened") #dbug-remove later
+            print("admin dashboard opened") #dbug-remove later
             self.close()
             print("login dialog closed") #dbug-remove later
         except Exception as e:
             print(f"Error opening admin dashboard: {e}")
-        import traceback
-        traceback.print_exc()
-        raise
+            import traceback
+            traceback.print_exc()
+            QMessageBox.critical(self, "Error", f"Failed to open admin dashboard: {e}") #dbug-remove later

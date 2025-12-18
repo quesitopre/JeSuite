@@ -27,20 +27,24 @@ class BookingService:
           the CSV file with  the appropriate column headers.
         """
         #Create a CSV file and folder.
-        os.makedirs(os.path.dirname(self.booking_file), exist_ok=True) # create a directory if it doesn't exist
+        dir_path =os.path.dirname(self.booking_file) # create a directory if it doesn't exist
+        if dir_path:
+            os.makedirs(dir_path,exist_ok=True)
+        
         if not os.path.exists(self.booking_file):
             with open(self.booking_file,'w',newline = '') as file:
-                write = csv.writer(file)
+                writer = csv.writer(file)
 
-                write.writerow([
+                writer.writerow([
                     'booking_id',
                     'customer_first_name',
                     'customer_last_name',
                     'customer_email',
+                    'check_in',
+                    'check_out',
                     'credit_card_num',
-                    'credit_card_cvc',
-                    'billing_zip_code',
-                    'room_id',
+                    'credit_card_cvv',
+                    'billing_zipcode',
                     'room_price',
                     'nights',
                     'total_amount',
