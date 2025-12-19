@@ -3,3 +3,4 @@ booking_id,customer_first_name,customer_last_name,customer_email,check_in,check_
 BK001,cit,mart,citmart@gmail.com,12/06/2025,12/07/2025,2141243245124 ,123,90121,,,1,280.0,confirmed
 BK002,test,run,idk@email.com,12/19/2025,12/20/2025,,,,Suite bed(2 King),280.0,1,0,confirmed
 BK003,test2,,,12/24/2025,12/26/2025,,,,Suite bed(2 King),280.0,2,0,confirmed
+BK004,Esther,Deelox,grudrufru@gmail.com,12/21/2025,12/23/2025,7777777777,777,90001,1 Queen bed,120.0,2,0,confirmed
