@@ -6,6 +6,7 @@ from roomSelection import RoomSelectionPage
 from shoppingCartPage import ShoppingCartPage
 from reservationPage import ReservationPage
 from confirmationPage import ConfirmationPage
+from booking import Booking 
 
 import pydoc
 
@@ -25,7 +26,10 @@ class MainWindow(QMainWindow):
         '''
         super().__init__()
         self.setWindowTitle("JeSuite Hotel Reservation")
-        self.resize(600, 800)
+        self.resize(1292, 924)
+        self.setMinimumSize(800, 600)
+        self.setMaximumSize(1920, 1080)
+        self.statusBar().setSizeGripEnabled(True) # make window resizable
         #self.setStyleSheet("background-color: lightblue;")
         self.setStyleSheet("""
             MainWindow{
@@ -36,12 +40,14 @@ class MainWindow(QMainWindow):
         self.stack = QStackedWidget()
         self.setCentralWidget(self.stack)
 
+        self.booking_manager = Booking() #booking manager reference
+
         #Initialize pages
-        home = HomePage(self.stack)
+        home = HomePage(self.stack,self.booking_manager)
         shopping_cart = ShoppingCartPage(self.stack)
         room_selection = RoomSelectionPage(self.stack,shopping_cart)
-       #shopping_cart = ShoppingCartPage(self.stack)
-        reservation = ReservationPage(self.stack)
+        reservation = ReservationPage(self.stack, self.booking_manager,shopping_cart) 
+        shopping_cart = ShoppingCartPage(self.stack, self.booking_manager)
         confirmation_text = ConfirmationPage(self.stack)
 
         #Add pages to stacked widget
@@ -50,8 +56,6 @@ class MainWindow(QMainWindow):
         self.stack.addWidget(shopping_cart)
         self.stack.addWidget(reservation)
         self.stack.addWidget(confirmation_text)
-
-
 
 if __name__ == "__main__":
     '''
@@ -67,6 +71,8 @@ if __name__ == "__main__":
     app = QApplication(sys.argv)
     window = MainWindow()
     window.show()
+    window.raise_() # bring window to front
+    window.activateWindow() # bring window to front
     sys.exit(app.exec_())
 
 pydoc.writedoc("main")

@@ -5,8 +5,7 @@ from PyQt5.QtWidgets import (
 from PyQt5.QtGui import QPixmap
 
 class Header(QWidget):
-    def __init__(self, bool=True):
-       
+    def __init__(self, bool = True):
         super().__init__()
         self.initUI()
     
@@ -47,7 +46,7 @@ class Header(QWidget):
             sign_up_button = QPushButton("Sign Up")
             header_layout.addWidget(sign_in_button)
             header_layout.addWidget(sign_up_button)
-            
+        
         
 
         

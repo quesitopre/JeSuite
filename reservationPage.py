@@ -49,10 +49,11 @@ class TextInputField(QWidget):
 
 """ Reservation Page Class"""
 class ReservationPage(QWidget):
-    def __init__(self, stacked_widget):
+    def __init__(self, stacked_widget, booking_manager = None, shopping_cart = None):
         super().__init__()
         self.stacked_widget = stacked_widget
-
+        self.booking_manager = booking_manager
+        self.shopping_cart = shopping_cart
         """Initialize input fields to None"""
         self.first_name_field = None
         self.last_name_field = None
@@ -206,6 +207,10 @@ class ReservationPage(QWidget):
    
     def confirm_reservation(self):
         """Handle reservation confirmation logic"""
+        from booking_service import BookingService
+        from datetime import datetime
+         
+         #save customer info
         customer = Customer(
             first_name=self.first_name_field.get_value(),
             last_name=self.last_name_field.get_value(),
@@ -222,9 +227,76 @@ class ReservationPage(QWidget):
             billing_zip=self.billing_zip.get_value()
         )
 
-    # ✅ Customer.__init__ already calls save_to_csv()
-        print(f"Reservation confirmed and saved for: {customer.first_name} {customer.last_name}")
+        if self.booking_manager:
+            booking_data = self.booking_manager.get_booking_data()
+             
+            total_amount = 0.0
+            if hasattr(self, 'shopping_cart') and self.shopping_cart:
+                total_amount = self.shopping_cart.get_cart_total()
+                print(f"cart total: ${total_amount}") 
+            
+            nights = 1  # Default
+            check_in = booking_data.get('check_in', '')
+            check_out = booking_data.get('check_out', '')
+            if check_in and check_out:
+                try:
+                    date_in = datetime.strptime(check_in, '%m/%d/%Y')
+                    date_out = datetime.strptime(check_out, '%m/%d/%Y')
+                    nights = (date_out - date_in).days
+                except:
+                    nights = 1
+        
+            # Save to bookings.csv
+            booking_id = self.save_booking_to_csv(
+                customer=customer,
+                booking_data=booking_data,
+                total_amount=total_amount,  
+                nights=nights
+            )
+        
+            print(f" Booking {booking_id} saved successfully!")
+            print(f"Reservation confirmed for: {customer.first_name} {customer.last_name}")
+        
         self.stacked_widget.setCurrentIndex(4)
+
+    def save_booking_to_csv(self, customer,booking_data, total_amount,nights):
+        """Saves booking information to a CSV file using BookingService."""
+        import csv
+        import os
+
+        file_exists = os.path.isfile('bookings.csv') 
+        booking_id = self.generate_booking_id()
+
+        with open('bookings.csv','a', newline='',encoding = 'utf-8') as file:
+            fieldnames = ['booking_id', 'customer_first_name', 'customer_last_name', 'customer_email', 'check_in','check_out',
+                          'credit_card_num', 'credit_card_cvv', 'billing_zipcode', 'room_id', 'room_price',
+                          'nights', 'total_amount', 'status']
+            writer = csv.DictWriter(file, fieldnames=fieldnames)
+
+            if not file_exists:
+                writer.writeheader()  # Write header only if file doesn't exist
+            writer.writerow({
+            'booking_id': booking_id,
+            'customer_first_name': customer.first_name,
+            'customer_last_name': customer.last_name,
+            'customer_email': customer.email,
+            'check_in': booking_data.get('check_in', 'N/A'),  
+            'check_out': booking_data.get('check_out', 'N/A'), 
+            'credit_card_num': customer.card_num,
+            'credit_card_cvv': customer.cvv,
+            'billing_zipcode': customer.billing_zip,
+            'room_id': booking_data.get('room_type', 'N/A'),
+            'room_price': booking_data.get('room_price', 0),
+            'nights': nights,
+            'total_amount': total_amount,
+            'status': 'confirmed'
+            })
+        return booking_id
+    
+    def generate_booking_id(self):
+        from booking_service import BookingService
+        service = BookingService()
+        return service.generateBookingID()
 
     def get_guestinfo(self):
         """Return guest information as a dictionary"""
@@ -232,6 +304,4 @@ class ReservationPage(QWidget):
             "first_name": self.first_name_field.get_value(),
             "last_name": self.last_name_field.get_value()
         }
-    
-        
 pydoc.writedoc("reservationPage")

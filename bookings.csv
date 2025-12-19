@@ -1,0 +1,5 @@
+booking_id,customer_first_name,customer_last_name,customer_email,check_in,check_out,credit_card_num,credit_card_cvv,billing_zipcode,room_id,room_price,nights,total_amount,status
+booking_id,customer_first_name,customer_last_name,customer_email,check_in,check_out,credit_card_num,credit_card_cvv,billing_zipcode,room_id,room_price,nights,total_amount,status
+BK001,cit,mart,citmart@gmail.com,12/06/2025,12/07/2025,2141243245124 ,123,90121,,,1,280.0,confirmed
+BK002,test,run,idk@email.com,12/19/2025,12/20/2025,,,,Suite bed(2 King),280.0,1,0,confirmed
+BK003,test2,,,12/24/2025,12/26/2025,,,,Suite bed(2 King),280.0,2,0,confirmed
