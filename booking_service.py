@@ -3,7 +3,7 @@ Module manages functionality for creating, fetching, and inputting booking data 
 
 Made by Citlalli Martinez 11/08/2025.
 """
-from backend.booking import Booking
+from booking import Booking
 import csv
 import os
 from datetime import datetime
