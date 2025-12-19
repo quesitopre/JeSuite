@@ -15,9 +15,10 @@ class CartItem:
 # Shopping Cart Page
 # -------------------------
 class ShoppingCartPage(QWidget):
-    def __init__(self, stacked_widget):
+    def __init__(self, stacked_widget, booking_manager = None):
         super().__init__()
         self.stacked_widget = stacked_widget
+        self.booking_manager = booking_manager
         self.cart = []  # list of CartItem objects
         self.initUI()
 
@@ -75,7 +76,10 @@ class ShoppingCartPage(QWidget):
 
     def get_total(self):
         return sum(item.price * item.quantity for item in self.cart)
-
+    
+    def get_cart_total(self):
+        return self.get_total()
+    
     # -------------------------
     # UI Updates
     # -------------------------
@@ -123,4 +127,12 @@ class ShoppingCartPage(QWidget):
         self.refresh_cart()
 
     def go_to_reservation(self):
+        if self.bookinng_manager and len(self.cart)> 0:
+            first_room = self.cart[0]
+            self.booking_manager.set_room_selection(
+                room_type = first_room.room_name,
+                room_price = first_room.price
+            )
+            print(f"✅ Room saved: {first_room.room_name} @ ${first_room.price}")
         self.stacked_widget.setCurrentIndex(3)
+

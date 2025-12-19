@@ -27,22 +27,26 @@ class BookingService:
           the CSV file with  the appropriate column headers.
         """
         #Create a CSV file and folder.
-        os.makedirs(os.path.dirname(self.booking_file), exist_ok=True) # create a directory if it doesn't exist
+        dir_path =os.path.dirname(self.booking_file) # create a directory if it doesn't exist
+        if dir_path:
+            os.makedirs(dir_path,exist_ok=True)
+        
         if not os.path.exists(self.booking_file):
             with open(self.booking_file,'w',newline = '') as file:
-                write = csv.writer(file)
+                writer = csv.writer(file)
 
-                write.writerow([
+                writer.writerow([
                     'booking_id',
                     'customer_first_name',
                     'customer_last_name',
                     'customer_email',
+                    'check_in',
+                    'check_out',
                     'credit_card_num',
-                    'credit_card_cvc',
-                    'billing_zip_code',
-                    'room_id',
+                    'credit_card_cvv',
+                    'billing_zipcode',
                     'room_price',
-                    'nights'
+                    'nights',
                     'total_amount',
                     'status',
                 ])
@@ -58,7 +62,7 @@ class BookingService:
             str:  A unique booking ID in the format BK000( 000 a 3 digit number).
         """
        #Must generate a unique booking ID
-        bookings = self.loadBookings()
+        bookings = self.getAllBookings()
         if not bookings:
              return "BK001"
         last_id = bookings[-1].get('booking_id', 'BK000')
@@ -89,8 +93,8 @@ class BookingService:
                 booking.credit_card_cvc,
                 booking.billing_zip_code,
                 getattr(booking, 'room_id',''),
-                getattr(booking,' nights',''), 
-                getattr(booking,total_amount,'')
+                getattr(booking,'nights',''), 
+                getattr(booking,'total_amount','')
             ])
         
 
@@ -107,12 +111,12 @@ class BookingService:
             bookings = list[dict[str,str]]: A list of dictionaries, each representing a booking record.
         """
         #get all bookings from CSV as a list of dictionaries
-        bookings = list[dict[str,str]] = []
+        bookings = []
         try: 
             with open(self.booking_file, 'r', newline='') as file:
                 reader = csv.DictReader(file)
                 for row in reader:
-                    bookings.list(reader)
+                    bookings.append(row)
         except FileNotFoundError:
             self._initialize_file() # if file does not exist then create it
 
