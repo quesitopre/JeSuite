@@ -47,8 +47,8 @@ class RoomSelectionPage(QWidget):
         grid = QHBoxLayout()
         rooms = [
             ("Assets/King_room.jpg", "1 King bed", "Max Occupancy: 3", "$170"),
-            ("Assets/Queen_room.avif", "1 Queen bed", "Max Occupancy: 2", "$120"),
-            ("Assets/Double_room.avif", "Double bed(2 Queen)", "Max Occupancy: 4", "$210"),
+            ("Assets/Queen_room.jpg", "1 Queen bed", "Max Occupancy: 2", "$120"),
+            ("Assets/Double_room.jpg", "Double bed(2 Queen)", "Max Occupancy: 4", "$210"),
             ("Assets/Suite_room.jpg", "Suite bed(2 King)", "Max Occupancy: 4", "$280")
         ]
 

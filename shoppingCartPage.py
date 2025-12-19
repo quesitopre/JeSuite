@@ -2,18 +2,17 @@ from PyQt5.QtWidgets import QWidget, QLabel, QVBoxLayout, QHBoxLayout, QPushButt
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtCore import Qt
 
-# -------------------------
 # Cart Item Model
-# -------------------------
+
 class CartItem:
     def __init__(self, room_name, price, quantity=1):
         self.room_name = room_name
         self.price = price
         self.quantity = quantity
 
-# -------------------------
+
 # Shopping Cart Page
-# -------------------------
+
 class ShoppingCartPage(QWidget):
     def __init__(self, stacked_widget, booking_manager = None):
         super().__init__()
@@ -55,16 +54,29 @@ class ShoppingCartPage(QWidget):
         self.total_label.setStyleSheet("font-size: 18px; font-weight: bold;")
         layout.addWidget(self.total_label)
 
-        # Confirm Button
-        self.button = QPushButton("Confirm Reservation")
-        self.button.clicked.connect(self.go_to_reservation)
-        layout.addWidget(self.button)
+        # Confirm/back Button
+        # Horizontal button layout
+        fowardbackbutt_layout = QHBoxLayout()
+
+        self.prev_button = QPushButton("Previous Page")
+        self.prev_button.clicked.connect(self.go_to_selection_page)
+
+        self.confirm_button = QPushButton("Confirm Reservation")
+        self.confirm_button.clicked.connect(self.go_to_reservation)
+
+        fowardbackbutt_layout.addWidget(self.prev_button)
+        fowardbackbutt_layout.addWidget(self.confirm_button)
+
+        # ADD the horizontal layout to your main layout
+        layout.addLayout(fowardbackbutt_layout)
+
+
 
         self.refresh_cart()
 
-    # -------------------------
+
     # Cart Logic
-    # -------------------------
+  
     def add_room(self, room_name, price):
         for item in self.cart:
             if item.room_name == room_name:
@@ -80,9 +92,9 @@ class ShoppingCartPage(QWidget):
     def get_cart_total(self):
         return self.get_total()
     
-    # -------------------------
+    
     # UI Updates
-    # -------------------------
+   
     def refresh_cart(self):
         self.cart_list.clear()
         for item in self.cart:
@@ -126,13 +138,15 @@ class ShoppingCartPage(QWidget):
             self.cart.remove(item)
         self.refresh_cart()
 
+    def go_to_selection_page(self):
+            self.stacked_widget.setCurrentIndex(1)
     def go_to_reservation(self):
-        if self.bookinng_manager and len(self.cart)> 0:
+        if self.booking_manager and len(self.cart)> 0:
             first_room = self.cart[0]
             self.booking_manager.set_room_selection(
                 room_type = first_room.room_name,
                 room_price = first_room.price
             )
-            print(f"✅ Room saved: {first_room.room_name} @ ${first_room.price}")
+            print(f" Room saved: {first_room.room_name} @ ${first_room.price}")
         self.stacked_widget.setCurrentIndex(3)
 

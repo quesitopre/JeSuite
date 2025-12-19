@@ -128,7 +128,9 @@ class RoomCard(QWidget):
             None
         '''
         #emit signal w/ room info
-        self.added_to_cart.emit(self.name,self.price)  #emit signal when room is added to cart
+        cart_page = self.stacked_widget.widget(2)
+        cart_page.add_room(self.name,float(self.price)) #add room to cart page
+        #self.added_to_cart.emit(self.name,self.price)  #emit signal when room is added to cart
         self.stacked_widget.setCurrentIndex(2)
 
 pydoc.writedoc("roomCard")
